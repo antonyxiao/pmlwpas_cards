@@ -111,6 +111,7 @@ BASIC_MODEL = genanki.Model(
     BASIC_MODEL_ID,
     'ML Basic',
     fields=[
+        {'name': 'SortOrder'},  # Hidden field for ordering
         {'name': 'Front'},
         {'name': 'Back'},
         {'name': 'Tags'},
@@ -128,6 +129,7 @@ BASIC_MODEL = genanki.Model(
         },
     ],
     css=CARD_CSS,
+    sort_field_index=0,  # Sort by SortOrder field
 )
 
 # Cloze card model
@@ -136,6 +138,7 @@ CLOZE_MODEL = genanki.Model(
     'ML Cloze',
     model_type=genanki.Model.CLOZE,
     fields=[
+        {'name': 'SortOrder'},  # Hidden field for ordering
         {'name': 'Text'},
         {'name': 'Extra'},
         {'name': 'Tags'},
@@ -152,6 +155,7 @@ CLOZE_MODEL = genanki.Model(
         },
     ],
     css=CARD_CSS,
+    sort_field_index=0,  # Sort by SortOrder field
 )
 
 
@@ -279,18 +283,21 @@ def build_deck(
 
         print(f"  Chapter {chapter_num:02d}: {len(cards)} cards")
 
-        for card in cards:
+        for card_index, card in enumerate(cards, start=1):
+            # Create sort order: "CC-NNN" (chapter-cardnum) for proper ordering
+            sort_order = f"{chapter_num:02d}-{card_index:04d}"
+
             # Create appropriate note type
             if card['type'] == 'Cloze':
                 note = genanki.Note(
                     model=CLOZE_MODEL,
-                    fields=[card['front'], card['back'], card['tags']],
+                    fields=[sort_order, card['front'], card['back'], card['tags']],
                     tags=card['tags'].replace('::', '_').split() if card['tags'] else [],
                 )
             else:
                 note = genanki.Note(
                     model=BASIC_MODEL,
-                    fields=[card['front'], card['back'], card['tags']],
+                    fields=[sort_order, card['front'], card['back'], card['tags']],
                     tags=card['tags'].replace('::', '_').split() if card['tags'] else [],
                 )
 
