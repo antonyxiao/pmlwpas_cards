@@ -1,81 +1,81 @@
 Type	Front	Back	Tags
-Basic	What are the three main types of machine learning?	Supervised learning, unsupervised learning, and reinforcement learning	chapter01::ml-types
-Basic	What characterizes supervised learning?	It uses labeled training data to learn a mapping from inputs to outputs	chapter01::ml-types
-Basic	What characterizes unsupervised learning?	It works with unlabeled data to discover hidden structure or patterns	chapter01::ml-types
-Basic	What characterizes reinforcement learning?	It learns through interactions with an environment to maximize a reward signal	chapter01::ml-types
-Cloze	{{c1::Machine learning}} is the application and science of algorithms that make sense of data		chapter01::ml-definition
+Basic	What is machine learning?	Algorithms that learn patterns from data	chapter01::ml-definition
+Basic	What are the three main types of machine learning?	Supervised, unsupervised, reinforcement learning	chapter01::ml-types
+Basic	What does supervised learning use?	Labeled training data	chapter01::ml-types
+Basic	What does unsupervised learning work with?	Unlabeled data	chapter01::ml-types
+Basic	What does reinforcement learning maximize?	A reward signal	chapter01::ml-types
 Cloze	Machine learning evolved as a subfield of {{c1::artificial intelligence (AI)}}		chapter01::ml-history
-Cloze	Machine learning emerged in the second half of the {{c1::20th century}}		chapter01::ml-history
-Basic	What is the main advantage of machine learning over manual rule derivation?	It offers a more efficient alternative for capturing knowledge in data to gradually improve predictive models and make data-driven decisions	chapter01::ml-benefits
-Cloze	{{c1::Supervised learning}} uses {{c2::labeled}} training data to learn a mapping from inputs to outputs		chapter01::supervised-learning
-Basic	Why is supervised learning called "supervised"?	Because the training examples have known desired output signals (labels) - like having a teacher provide correct answers	chapter01::supervised-learning
-Basic	What is the main goal of supervised learning?	To learn a model from labeled training data that allows making predictions about unseen or future data	chapter01::supervised-learning
-Cloze	The two main subcategories of supervised learning are {{c1::classification}} and {{c2::regression}}		chapter01::supervised-learning
-Basic	What distinguishes classification from regression?	Classification predicts discrete class labels; regression predicts continuous values	chapter01::supervised-learning
-Cloze	{{c1::Classification}} is a supervised learning task where the goal is to predict {{c2::categorical class labels}} of new instances		chapter01::classification
-Basic	What is a binary classification task?	A classification task with only two possible classes (e.g., spam vs. non-spam)	chapter01::classification
-Basic	Give an example of binary classification.	Email spam detection - classifying emails as spam or non-spam	chapter01::classification
-Cloze	A {{c1::decision boundary}} is a rule learned by a classification algorithm that separates different classes in the feature space		chapter01::classification
-Basic	What is multiclass classification?	Classification where more than two class labels are possible	chapter01::classification
-Basic	Give an example of multiclass classification.	Handwritten character recognition where letters A-Z represent different classes	chapter01::classification
-Cloze	{{c1::Regression analysis}} is a type of supervised learning for predicting {{c2::continuous}} outcomes		chapter01::regression
-Basic	What are predictor variables used for in regression?	To find a relationship that predicts the continuous response variable (outcome)	chapter01::regression
-Cloze	In machine learning, predictor variables are commonly called {{c1::features}}		chapter01::terminology
-Cloze	In machine learning, response variables are commonly called {{c1::target variables}}		chapter01::terminology
-Basic	Who coined the term "regression"?	Francis Galton	chapter01::regression
-Basic	When was the term "regression" coined?	In 1886, in an article about hereditary stature	chapter01::regression
-Basic	What is the goal of reinforcement learning?	To develop a system (agent) that improves its performance based on interactions with the environment	chapter01::reinforcement-learning
-Cloze	In reinforcement learning, the system that learns is called an {{c1::agent}}		chapter01::reinforcement-learning
-Cloze	In reinforcement learning, the agent interacts with the {{c1::environment}}		chapter01::reinforcement-learning
-Cloze	In reinforcement learning, feedback comes in the form of a {{c1::reward signal}} rather than correct ground truth labels		chapter01::reinforcement-learning
-Basic	How does an agent learn in reinforcement learning?	Through exploratory trial-and-error or deliberative planning, learning actions that maximize reward	chapter01::reinforcement-learning
-Basic	Give an example of reinforcement learning.	A chess program where the agent decides moves based on board state and receives win/lose reward at game end	chapter01::reinforcement-learning
-Cloze	{{c1::Unsupervised learning}} deals with {{c2::unlabeled}} data or data of unknown structure		chapter01::unsupervised-learning
-Basic	What is the key difference between supervised and unsupervised learning?	Supervised uses labeled data with known outcomes; unsupervised works with unlabeled data to discover hidden structure	chapter01::unsupervised-learning
-Cloze	{{c1::Clustering}} is an unsupervised technique that organizes data into meaningful {{c2::subgroups}}		chapter01::clustering
-Basic	Why is clustering sometimes called "unsupervised classification"?	Because it groups similar objects without predefined labels, similar to classification but without known categories	chapter01::clustering
-Basic	Give a practical application of clustering.	Marketers discovering customer groups based on interests to develop distinct marketing programs	chapter01::clustering
-Cloze	{{c1::Dimensionality reduction}} compresses data onto a smaller dimensional subspace while retaining most of the {{c2::relevant information}}		chapter01::dimensionality-reduction
-Basic	What is one benefit of dimensionality reduction?	Less storage space is required	chapter01::dimensionality-reduction
-Basic	What is another benefit of dimensionality reduction?	Learning algorithms can run much faster	chapter01::dimensionality-reduction
-Basic	How can dimensionality reduction improve model performance?	It can remove noise from data when the dataset contains many irrelevant features	chapter01::dimensionality-reduction
-Cloze	A {{c1::training example}} (observation, record, instance, sample) represents one {{c2::row}} in a dataset		chapter01::terminology
-Cloze	A {{c1::feature}} (predictor, variable, input, attribute) represents one {{c2::column}} in a data table		chapter01::terminology
-Cloze	The {{c1::target}} variable is synonymous with outcome, output, response variable, dependent variable, and ground truth		chapter01::terminology
-Cloze	A {{c1::loss function}} (cost function, error function) measures how well the model's predictions match the actual values		chapter01::terminology
-Basic	What is the difference between "loss" and "cost" in some ML literature?	Loss refers to error for a single data point; cost computes the loss (average or summed) over the entire dataset	chapter01::terminology
-Cloze	In ML notation, superscript {{c1::i}} refers to the ith training example		chapter01::notation
-Cloze	In ML notation, subscript {{c1::j}} refers to the jth dimension (feature)		chapter01::notation
-Basic	How many Iris flowers are in the Iris dataset?	150	chapter01::iris-dataset
-Basic	How many species are in the Iris dataset?	Three: Setosa, Versicolor, and Virginica	chapter01::iris-dataset
-Basic	What are the three species in the Iris dataset?	Setosa, Versicolor, and Virginica	chapter01::iris-dataset
-Basic	What features are measured in the Iris dataset?	Sepal length, sepal width, petal length, and petal width (all in centimeters)	chapter01::iris-dataset
-Basic	What is step 1 in a typical machine learning workflow?	Raw data collection	chapter01::ml-workflow
-Basic	What is step 2 in a typical machine learning workflow?	Preprocessing the data	chapter01::ml-workflow
-Basic	What is step 3 in a typical machine learning workflow?	Training/test split	chapter01::ml-workflow
-Basic	What is step 4 in a typical machine learning workflow?	Model training with cross-validation	chapter01::ml-workflow
-Basic	What is step 5 in a typical machine learning workflow?	Model evaluation	chapter01::ml-workflow
-Basic	What is step 6 in a typical machine learning workflow?	Prediction on new data	chapter01::ml-workflow
-Basic	Why is preprocessing one of the most crucial steps in machine learning?	Raw data rarely comes in the form needed for optimal algorithm performance	chapter01::preprocessing
-Cloze	Feature scaling often transforms features to the range {{c1::[0, 1]}} or a standard normal distribution		chapter01::preprocessing
-Cloze	Standard normal distribution for feature scaling has {{c1::zero mean and unit variance}}		chapter01::preprocessing
-Basic	Why might we want to reduce the dimensionality of features before training?	To reduce storage requirements, speed up learning algorithms, and improve performance by removing noise	chapter01::preprocessing
-Basic	Why do we split data into training and test sets?	To determine if the model not only performs well on training data but also generalizes well to unseen data	chapter01::model-evaluation
-Cloze	The {{c1::test dataset}} should be kept until the very end and used only for {{c2::final model evaluation}}		chapter01::model-evaluation
-Basic	What is the "No Free Lunch" theorem in machine learning?	No single learning algorithm is superior to all others - each has inherent biases	chapter01::model-selection
-Basic	What does the No Free Lunch theorem imply for practitioners?	We must compare different algorithms for each specific task	chapter01::model-selection
-Cloze	{{c1::Classification accuracy}} is defined as the proportion of {{c2::correctly classified instances}}		chapter01::model-evaluation
-Cloze	{{c1::Cross-validation}} divides a dataset into training and validation subsets to estimate {{c2::generalization performance}}		chapter01::model-evaluation
-Cloze	{{c1::Hyperparameters}} are parameters not learned from data but represent the knobs of a model we can turn to improve performance		chapter01::hyperparameters
-Basic	What is the generalization error?	A measure of how well a trained model performs on unseen test data	chapter01::model-evaluation
-Basic	Why must preprocessing parameters be obtained only from training data?	Using test data would make performance estimates overly optimistic - same parameters must be reapplied to test and new data	chapter01::preprocessing
-Cloze	{{c1::scikit-learn}} is a popular open-source library for traditional machine learning in Python		chapter01::python-tools
-Cloze	{{c1::PyTorch}} is a library that specializes in training deep neural networks efficiently using {{c2::graphics cards}}		chapter01::python-tools
-Cloze	{{c1::NumPy}} provides multidimensional arrays for storing and manipulating data, with fast vectorized operations		chapter01::python-tools
-Cloze	{{c1::pandas}} is built on top of NumPy and provides higher-level data manipulation tools for {{c2::tabular data}}		chapter01::python-tools
-Basic	What is deep learning in relation to machine learning?	Deep learning is a subfield of machine learning that focuses on training deep neural network models	chapter01::deep-learning
-Basic	Give one real-world application of machine learning.	Email spam filtering	chapter01::ml-applications
-Basic	Give another real-world application of machine learning.	Voice and text recognition	chapter01::ml-applications
-Basic	Give a medical application of machine learning.	Medical diagnosis such as skin cancer detection	chapter01::ml-applications
-Cloze	DeepMind's AlphaFold used {{c1::deep learning}} to predict {{c2::3D protein structures}}		chapter01::ml-applications
-Basic	What is precision agriculture?	A field using computer vision-based ML systems to optimize resource deployment and minimize fertilizer use	chapter01::ml-applications
+Basic	Why use ML over manual rules?	ML captures patterns automatically from data	chapter01::ml-benefits
+Basic	What does "labeled data" mean?	Data where each example has a known output/answer	chapter01::prerequisites
+Basic	What is a "model" in ML?	A learned function that maps inputs to outputs	chapter01::prerequisites
+Basic	What is "training" in ML?	The process of learning model parameters from data	chapter01::prerequisites
+Basic	Why is supervised learning called "supervised"?	A "teacher" provides correct answers (labels)	chapter01::supervised-learning
+Basic	What is the goal of supervised learning?	Predict outputs for new, unseen data	chapter01::supervised-learning
+Basic	What are the two types of supervised learning?	Classification and regression	chapter01::supervised-learning
+Basic	What does classification predict?	Discrete class labels	chapter01::classification
+Basic	What does regression predict?	Continuous numerical values	chapter01::regression
+Basic	What is binary classification?	Predicting one of two classes	chapter01::classification
+Basic	Give an example of binary classification.	Spam vs. non-spam email	chapter01::classification
+Basic	What is a decision boundary?	A line/surface separating different classes	chapter01::classification
+Basic	What is multiclass classification?	Predicting one of more than two classes	chapter01::classification
+Basic	Give an example of multiclass classification.	Handwritten digit recognition (0-9)	chapter01::classification
+Basic	What are predictor variables also called?	Features	chapter01::terminology
+Basic	What are response variables also called?	Target variables	chapter01::terminology
+Basic	What is reinforcement learning?	Learning through environment interaction	chapter01::reinforcement-learning
+Basic	What is an "agent" in RL?	The system that learns and takes actions	chapter01::reinforcement-learning
+Basic	What is the "environment" in RL?	What the agent interacts with	chapter01::reinforcement-learning
+Basic	What is a "reward signal"?	Feedback indicating how good an action was	chapter01::reinforcement-learning
+Basic	How does an RL agent learn?	Trial-and-error to maximize cumulative reward	chapter01::reinforcement-learning
+Basic	Give an example of reinforcement learning.	Chess program learning winning moves	chapter01::reinforcement-learning
+Basic	What is unsupervised learning?	Finding hidden structure in unlabeled data	chapter01::unsupervised-learning
+Basic	What is clustering?	Grouping similar data points together	chapter01::clustering
+Basic	Why is clustering called "unsupervised classification"?	It groups data without predefined labels	chapter01::clustering
+Basic	Give an application of clustering.	Customer segmentation for marketing	chapter01::clustering
+Basic	What is dimensionality reduction?	Reducing number of features while preserving information	chapter01::dimensionality-reduction
+Basic	Name two benefits of dimensionality reduction.	Less storage, faster algorithms	chapter01::dimensionality-reduction
+Basic	How can dimensionality reduction improve models?	By removing noise from irrelevant features	chapter01::dimensionality-reduction
+Cloze	A {{c1::training example}} is one row in a dataset		chapter01::terminology
+Cloze	A {{c1::feature}} is one column in a dataset		chapter01::terminology
+Basic	What is a loss function?	Measures prediction error	chapter01::terminology
+Basic	What is a cost function?	Loss averaged/summed over the dataset	chapter01::terminology
+Cloze	Superscript {{c1::i}} refers to the ith training example		chapter01::notation
+Cloze	Subscript {{c1::j}} refers to the jth feature		chapter01::notation
+Basic	How many samples are in the Iris dataset?	150	chapter01::iris-dataset
+Basic	How many species are in the Iris dataset?	3 (Setosa, Versicolor, Virginica)	chapter01::iris-dataset
+Basic	What features does the Iris dataset have?	Sepal/petal length and width	chapter01::iris-dataset
+Basic	What is step 1 in ML workflow?	Collect raw data	chapter01::ml-workflow
+Basic	What is step 2 in ML workflow?	Preprocess data	chapter01::ml-workflow
+Basic	What is step 3 in ML workflow?	Split into training/test sets	chapter01::ml-workflow
+Basic	What is step 4 in ML workflow?	Train model with cross-validation	chapter01::ml-workflow
+Basic	What is step 5 in ML workflow?	Evaluate model performance	chapter01::ml-workflow
+Basic	What is step 6 in ML workflow?	Predict on new data	chapter01::ml-workflow
+Basic	Why is preprocessing crucial?	Raw data is rarely optimal for algorithms	chapter01::preprocessing
+Basic	What is feature scaling?	Normalizing features to similar ranges	chapter01::preprocessing
+Cloze	Feature scaling often uses range {{c1::[0, 1]}} or standard normal		chapter01::preprocessing
+Basic	What is standard normal distribution?	Zero mean and unit variance	chapter01::preprocessing
+Basic	Why split data into training and test sets?	To check if model generalizes to new data	chapter01::model-evaluation
+Basic	When should test data be used?	Only for final model evaluation	chapter01::model-evaluation
+Basic	What is the "No Free Lunch" theorem?	No single algorithm is best for all tasks	chapter01::model-selection
+Basic	What does No Free Lunch imply?	Compare multiple algorithms per task	chapter01::model-selection
+Basic	What is classification accuracy?	Proportion of correct predictions	chapter01::model-evaluation
+Basic	What is cross-validation?	Splitting data to estimate generalization	chapter01::model-evaluation
+Basic	What are hyperparameters?	Model settings not learned from data	chapter01::hyperparameters
+Basic	Give examples of hyperparameters.	Learning rate, number of layers	chapter01::hyperparameters
+Basic	What is generalization error?	Performance on unseen test data	chapter01::model-evaluation
+Basic	Why fit preprocessing only on training data?	To avoid information leakage from test set	chapter01::preprocessing
+Cloze	{{c1::scikit-learn}} is used for traditional ML in Python		chapter01::python-tools
+Cloze	{{c1::PyTorch}} trains deep neural networks on GPUs		chapter01::python-tools
+Cloze	{{c1::NumPy}} provides fast array operations		chapter01::python-tools
+Cloze	{{c1::pandas}} handles tabular data manipulation		chapter01::python-tools
+Basic	What is deep learning?	ML using deep neural networks	chapter01::deep-learning
+Basic	Name two ML applications.	Spam filtering, voice recognition	chapter01::ml-applications
+Basic	Name a medical ML application.	Skin cancer detection	chapter01::ml-applications
+Basic	What did AlphaFold predict?	3D protein structures	chapter01::ml-applications
+Basic	Write Python to import NumPy.	import numpy as np	chapter01::code
+Basic	Write Python to import pandas.	import pandas as pd	chapter01::code
+Basic	Write Python to import scikit-learn's train_test_split.	from sklearn.model_selection import train_test_split	chapter01::code
+Basic	Write code to load the Iris dataset.	from sklearn.datasets import load_iris; iris = load_iris()	chapter01::code
+Basic	How do you access Iris features and labels?	X = iris.data, y = iris.target	chapter01::code
+Basic	Write code to split data 80/20 for train/test.	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)	chapter01::code
+Basic	How do you set a random seed in NumPy?	np.random.seed(42)	chapter01::code
+Basic	What does random_state parameter do?	Ensures reproducible splits	chapter01::code

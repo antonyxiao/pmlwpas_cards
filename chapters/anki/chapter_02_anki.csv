@@ -1,61 +1,75 @@
 Type	Front	Back	Tags
-Basic	What is the McCulloch-Pitts (MCP) neuron?	A simplified model of a brain cell proposed in 1943 that describes a nerve cell as a simple logic gate with binary outputs	chapter02::history
-Basic	When was the MCP neuron proposed?	1943	chapter02::history
-Basic	Who proposed the perceptron learning rule?	Frank Rosenblatt	chapter02::perceptron
-Basic	When was the perceptron learning rule proposed?	1957	chapter02::perceptron
-Cloze	The net input z in a perceptron is calculated as: z = {{c1::w^T x + b}}		chapter02::perceptron
-Cloze	The perceptron decision function outputs {{c1::1}} if z >= 0 and {{c2::0}} otherwise		chapter02::perceptron
-Basic	What is the bias unit in a perceptron?	A parameter that equals negative threshold (-theta) and is added to the net input calculation	chapter02::perceptron
-Cloze	The perceptron weight update rule is: w_j := w_j + {{c1::eta(y - y_hat)x_j}}		chapter02::perceptron
-Cloze	The perceptron bias update rule is: b := b + {{c1::eta(y - y_hat)}}		chapter02::perceptron
-Basic	When do perceptron weights remain unchanged during training?	When the prediction is correct (the update term y - y_hat equals 0)	chapter02::perceptron
-Basic	How does the perceptron adjust weights for a misclassified positive example?	Weights increase (delta_w_j = eta * x_j), making the net input more positive	chapter02::perceptron
-Basic	Why is the perceptron weight update proportional to the feature value x_j?	Larger feature values cause larger weight adjustments, pushing the decision boundary more strongly	chapter02::perceptron
-Basic	Why does the perceptron only converge for linearly separable data?	Because if data is not linearly separable, there is always at least one misclassified point causing endless updates	chapter02::perceptron
-Cloze	Perceptron convergence is {{c1::only guaranteed}} if the two classes are {{c2::linearly separable}}		chapter02::convergence
-Basic	What does "linearly separable" mean for two classes?	Two classes can be perfectly separated by a linear decision boundary (hyperplane)	chapter02::convergence
-Basic	How can you handle non-linearly separable data with a perceptron?	Set a maximum number of epochs and/or a threshold for tolerated misclassifications	chapter02::perceptron
-Basic	What is step 1 in perceptron training iteration?	Compute the output value (predicted class label) using the unit step function	chapter02::perceptron
-Basic	What is step 2 in perceptron training iteration?	Update the weights and bias unit based on the prediction error	chapter02::perceptron
-Cloze	The learning rate (eta) in the perceptron is typically a constant between {{c1::0.0}} and {{c2::1.0}}		chapter02::learning-rate
-Basic	Why shouldn't perceptron weights be initialized to all zeros?	The learning rate would only affect the scale of the weight vector, not its direction	chapter02::perceptron
-Basic	What is Adaline?	ADAptive LInear NEuron - updates weights based on a linear activation function rather than a unit step function	chapter02::adaline
-Cloze	In Adaline, the linear activation function is the {{c1::identity function}}, so sigma(z) = {{c2::z}}		chapter02::adaline
-Basic	What is the key advantage of Adaline's continuous activation function?	The loss function becomes differentiable, enabling gradient descent optimization	chapter02::adaline
-Cloze	Adaline's loss function is the {{c1::Mean Squared Error (MSE)}}		chapter02::adaline
-Basic	Why is MSE advantageous for Adaline?	MSE is both differentiable and convex, allowing reliable global minimum finding	chapter02::adaline
-Cloze	Gradient descent updates parameters by taking a step in the {{c1::opposite direction}} of the gradient		chapter02::gradient-descent
-Cloze	The gradient descent weight update is: w := w + {{c1::delta_w}} where delta_w = {{c2::-eta * gradient_of_L}}		chapter02::gradient-descent
-Basic	What is the intuition behind gradient descent?	Moving in the opposite direction of the gradient (negative gradient) steps downhill toward lower loss	chapter02::gradient-descent
-Basic	What determines step size in gradient descent?	The learning rate (eta) and the slope/magnitude of the gradient	chapter02::gradient-descent
-Basic	How does batch gradient descent differ from the perceptron update rule?	Batch gradient descent uses ALL training examples before updating; perceptron updates after each example	chapter02::gradient-descent
-Basic	What happens if the learning rate is too large in gradient descent?	The algorithm overshoots the global minimum and loss may increase	chapter02::learning-rate
-Basic	What happens if the learning rate is too small in gradient descent?	Convergence becomes extremely slow, requiring many epochs	chapter02::learning-rate
-Basic	What is feature standardization?	Transforming each feature to have zero mean and unit variance	chapter02::standardization
-Cloze	Feature standardization formula: x'_j = {{c1::(x_j - mu_j) / sigma_j}}		chapter02::standardization
-Basic	Why does standardization help gradient descent converge faster?	When features are on similar scales, a single learning rate works well for updating all weights	chapter02::standardization
-Basic	What is Stochastic Gradient Descent (SGD)?	Updating weights incrementally after each individual training example	chapter02::sgd
-Cloze	In SGD, the weight update for a single example is: delta_w_j = {{c1::eta * (y - sigma(z)) * x_j}}		chapter02::sgd
-Basic	What is one advantage of SGD over batch gradient descent?	Faster convergence due to more frequent weight updates	chapter02::sgd
-Basic	What is another advantage of SGD over batch gradient descent?	Can escape shallow local minima more easily due to noise	chapter02::sgd
-Basic	Why is shuffling training data important in SGD?	It prevents cycles and ensures training examples are presented in random order	chapter02::sgd
-Basic	What is online learning?	Training the model on-the-fly as new data arrives, without needing the full dataset	chapter02::sgd
-Basic	What is mini-batch gradient descent?	Applying gradient descent to small subsets (e.g., 32 examples) of training data	chapter02::gradient-descent
-Cloze	Mini-batch gradient descent is a compromise between {{c1::full batch gradient descent}} and {{c2::stochastic gradient descent}}		chapter02::gradient-descent
-Basic	What is an adaptive learning rate in SGD?	A learning rate that decreases over time during training to anneal closer to the loss minimum	chapter02::sgd
-Basic	What is the One-versus-All (OvA) technique?	Training one binary classifier per class, treating that class as positive and all others as negative	chapter02::classification
-Cloze	OvA (One-versus-All) is also called {{c1::One-versus-Rest (OvR)}}		chapter02::classification
-Basic	What is vectorization in ML implementations?	Replacing explicit for loops with array/matrix operations for faster computation	chapter02::implementation
-Basic	What is an epoch in machine learning training?	One complete pass through the entire training dataset	chapter02::training
-Basic	What does the underscore suffix (like w_) indicate in Python ML code?	Attributes created by calling methods like fit(), not during object initialization	chapter02::implementation
-Basic	What is the purpose of the activation function in Adaline?	To compute a continuous output for weight learning, illustrating information flow from input to output	chapter02::adaline
-Cloze	Although Adaline's activation is the identity function, a {{c1::threshold function}} is still used for final {{c2::binary class prediction}}		chapter02::adaline
-Basic	What is an objective function in supervised machine learning?	A function to be optimized during learning - typically a loss function to minimize	chapter02::training
-Basic	Why is the MSE loss called "convex"?	A convex function has a single global minimum with no local minima	chapter02::gradient-descent
-Cloze	The perceptron uses a {{c1::unit step function}} for activation, while Adaline uses a {{c2::linear (identity) function}}		chapter02::comparison
-Basic	How does Adaline compute error compared to the perceptron?	Adaline uses continuous-valued linear activation output; perceptron uses discrete predicted class labels	chapter02::comparison
-Basic	What does the net_input method compute?	The weighted sum of inputs plus bias: z = w^T * x + b	chapter02::implementation
-Cloze	The predict method in Adaline returns class {{c1::1}} if activation >= {{c2::0.5}}, and class {{c3::0}} otherwise		chapter02::adaline
-Basic	What is the purpose of the errors_ list in perceptron implementation?	Storing misclassifications per epoch to analyze convergence	chapter02::perceptron
-Basic	What is the purpose of the losses_ list in Adaline implementations?	Storing MSE loss per epoch to verify convergence and compare learning rates	chapter02::adaline
-Basic	What does the partial_fit method in AdalineSGD do?	Updates weights without reinitializing them, enabling online learning	chapter02::sgd
+Basic	What is a neuron (in biology)?	A nerve cell that processes signals	chapter02::prerequisites
+Basic	What is a weight in ML?	A parameter that scales input importance	chapter02::prerequisites
+Basic	What is a bias term?	A parameter that shifts the decision boundary	chapter02::prerequisites
+Basic	What is a threshold?	A cutoff value for making decisions	chapter02::prerequisites
+Basic	What is a derivative?	Rate of change of a function	chapter02::prerequisites
+Basic	What is a gradient?	Vector of partial derivatives	chapter02::prerequisites
+Basic	What does "convergence" mean?	When an algorithm reaches a stable solution	chapter02::prerequisites
+Basic	What is the MCP neuron?	First mathematical model of a neuron (1943)	chapter02::history
+Basic	What did the MCP neuron model?	A logic gate with binary outputs	chapter02::history
+Basic	Who proposed the perceptron?	Frank Rosenblatt (1957)	chapter02::perceptron
+Basic	What is a perceptron?	Single-layer neural network for binary classification	chapter02::perceptron
+Cloze	Perceptron net input: z = {{c1::w·x + b}}		chapter02::perceptron
+Basic	What does the perceptron output if z >= 0?	1	chapter02::perceptron
+Basic	What does the perceptron output if z < 0?	0	chapter02::perceptron
+Basic	What is the bias unit in a perceptron?	Negative threshold added to net input	chapter02::perceptron
+Cloze	Perceptron weight update: w_j := w_j + {{c1::η(y - ŷ)x_j}}		chapter02::perceptron
+Cloze	Perceptron bias update: b := b + {{c1::η(y - ŷ)}}		chapter02::perceptron
+Basic	When do perceptron weights stay unchanged?	When prediction is correct (y = ŷ)	chapter02::perceptron
+Basic	How does perceptron adjust for false negative?	Increases weights (makes z more positive)	chapter02::perceptron
+Basic	How does perceptron adjust for false positive?	Decreases weights (makes z more negative)	chapter02::perceptron
+Basic	What is η (eta)?	Learning rate	chapter02::learning-rate
+Cloze	Learning rate is typically between {{c1::0}} and {{c2::1}}		chapter02::learning-rate
+Basic	What is "linearly separable" data?	Data separable by a straight line/hyperplane	chapter02::convergence
+Basic	When does perceptron converge?	Only if data is linearly separable	chapter02::convergence
+Basic	How to handle non-separable data with perceptron?	Set maximum epochs or error threshold	chapter02::perceptron
+Basic	Why not initialize weights to all zeros?	Learning rate only affects scale, not direction	chapter02::perceptron
+Basic	What is an epoch?	One pass through entire training dataset	chapter02::training
+Basic	What is Adaline?	ADAptive LInear NEuron	chapter02::adaline
+Basic	How does Adaline differ from perceptron?	Uses continuous activation for weight updates	chapter02::adaline
+Basic	What activation does Adaline use?	Identity function: σ(z) = z	chapter02::adaline
+Basic	Why is continuous activation useful?	Makes loss differentiable for optimization	chapter02::adaline
+Basic	What loss function does Adaline use?	Mean Squared Error (MSE)	chapter02::adaline
+Cloze	MSE = {{c1::(1/n)Σ(y - ŷ)²}}		chapter02::adaline
+Basic	Why is MSE useful for optimization?	It's differentiable and convex	chapter02::adaline
+Basic	What is a convex function?	Has single global minimum, no local minima	chapter02::gradient-descent
+Basic	What is gradient descent?	Optimization by moving opposite to gradient	chapter02::gradient-descent
+Basic	Why move opposite to the gradient?	Gradient points uphill; we want downhill	chapter02::gradient-descent
+Cloze	Gradient descent update: w := w - {{c1::η∇L}}		chapter02::gradient-descent
+Basic	What determines step size in gradient descent?	Learning rate × gradient magnitude	chapter02::gradient-descent
+Basic	What is batch gradient descent?	Update weights using ALL training examples	chapter02::gradient-descent
+Basic	What if learning rate is too large?	Overshoots minimum, loss may increase	chapter02::learning-rate
+Basic	What if learning rate is too small?	Very slow convergence	chapter02::learning-rate
+Basic	What is feature standardization?	Transform to zero mean, unit variance	chapter02::standardization
+Cloze	Standardization: x' = {{c1::(x - μ) / σ}}		chapter02::standardization
+Basic	Why standardize features?	Similar scales help single learning rate work	chapter02::standardization
+Basic	What is SGD?	Stochastic Gradient Descent	chapter02::sgd
+Basic	How does SGD update weights?	After each individual example	chapter02::sgd
+Basic	Name an advantage of SGD over batch.	Faster convergence, more frequent updates	chapter02::sgd
+Basic	Another advantage of SGD?	Can escape shallow local minima	chapter02::sgd
+Basic	Why shuffle data in SGD?	Prevents cycles in training	chapter02::sgd
+Basic	What is online learning?	Training on-the-fly as new data arrives	chapter02::sgd
+Basic	What is mini-batch gradient descent?	Update using small subsets (e.g., 32 examples)	chapter02::gradient-descent
+Basic	Where does mini-batch fit between batch and SGD?	Compromise: more stable than SGD, faster than batch	chapter02::gradient-descent
+Basic	What is an adaptive learning rate?	Learning rate that decreases during training	chapter02::sgd
+Basic	What is One-versus-All (OvA)?	Train one classifier per class vs. rest	chapter02::classification
+Cloze	OvA is also called {{c1::One-versus-Rest (OvR)}}		chapter02::classification
+Basic	What is vectorization?	Replace loops with matrix operations	chapter02::implementation
+Basic	Why use vectorization?	Much faster computation	chapter02::implementation
+Basic	What does underscore suffix (w_) mean in sklearn?	Attribute set by fit(), not __init__	chapter02::implementation
+Basic	What is an objective function?	Function to optimize during training	chapter02::training
+Basic	How does Adaline make final predictions?	Threshold at 0.5 on activation output	chapter02::adaline
+Basic	What does errors_ track in perceptron?	Misclassifications per epoch	chapter02::implementation
+Basic	What does losses_ track in Adaline?	MSE loss per epoch	chapter02::implementation
+Basic	What does partial_fit do?	Update weights without reinitializing	chapter02::sgd
+Basic	Write code to compute net input.	z = np.dot(X, w) + b	chapter02::code
+Basic	Write perceptron prediction code.	np.where(z >= 0, 1, 0)	chapter02::code
+Basic	Write Adaline activation code.	return z  # identity function	chapter02::code
+Basic	Write code to initialize weights randomly.	w = np.random.normal(0, 0.01, n_features)	chapter02::code
+Basic	Write code to compute MSE loss.	loss = ((y - output) ** 2).mean()	chapter02::code
+Basic	Write gradient descent weight update.	w += eta * X.T.dot(y - output) / n	chapter02::code
+Basic	Write code to standardize a feature.	x_std = (x - x.mean()) / x.std()	chapter02::code
+Basic	Write code to shuffle training data.	idx = np.random.permutation(len(y)); X, y = X[idx], y[idx]	chapter02::code
+Basic	How to update weights in SGD for one sample?	w += eta * (y_i - output_i) * x_i	chapter02::code
+Basic	Write code to track errors per epoch.	errors_.append((y != predictions).sum())	chapter02::code
