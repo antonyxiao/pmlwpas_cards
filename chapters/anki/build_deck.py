@@ -22,6 +22,7 @@ import glob
 import argparse
 import random
 import hashlib
+import re
 from pathlib import Path
 
 try:
@@ -45,64 +46,99 @@ DECK_ID = generate_id('Python ML Flashcards')
 BASIC_MODEL_ID = generate_id('Basic ML Model')
 CLOZE_MODEL_ID = generate_id('Cloze ML Model')
 
-# Card styling
+# Card styling - Modern dark mode design
 CARD_CSS = """
 .card {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-size: 18px;
     text-align: center;
-    color: #333;
-    background-color: #fafafa;
-    padding: 20px;
-    line-height: 1.5;
+    color: #e4e4e7;
+    background: linear-gradient(145deg, #18181b 0%, #1f1f23 100%);
+    padding: 32px 24px;
+    line-height: 1.6;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
 .card img {
     max-width: 100%;
     max-height: 400px;
-    margin: 10px auto;
+    margin: 16px auto;
     display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
 code {
-    font-family: 'SF Mono', 'Fira Code', Consolas, 'Courier New', monospace;
-    font-size: 16px;
-    background-color: #f0f0f0;
-    padding: 2px 6px;
-    border-radius: 4px;
-    color: #d63384;
+    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+    font-size: 0.9em;
+    background-color: #27272a;
+    padding: 3px 8px;
+    border-radius: 6px;
+    color: #a78bfa;
+    border: 1px solid #3f3f46;
 }
 
 pre {
-    font-family: 'SF Mono', 'Fira Code', Consolas, 'Courier New', monospace;
+    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
     font-size: 14px;
-    background-color: #2d2d2d;
-    color: #f8f8f2;
-    padding: 12px;
-    border-radius: 6px;
+    background-color: #0f0f11;
+    color: #e4e4e7;
+    padding: 16px 20px;
+    border-radius: 12px;
     text-align: left;
     overflow-x: auto;
     white-space: pre-wrap;
+    border: 1px solid #27272a;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 12px 0;
+}
+
+hr#answer {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #3f3f46, transparent);
+    margin: 24px 0;
 }
 
 .tags {
-    font-size: 12px;
-    color: #888;
-    margin-top: 15px;
+    font-size: 11px;
+    color: #71717a;
+    margin-top: 24px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .cloze {
-    font-weight: bold;
-    color: #0066cc;
+    font-weight: 600;
+    color: #60a5fa;
+    background-color: rgba(96, 165, 250, 0.15);
+    padding: 2px 6px;
+    border-radius: 4px;
 }
 
 .front {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 500;
+    color: #fafafa;
+    line-height: 1.5;
 }
 
 .back {
     font-size: 18px;
+    color: #a1a1aa;
+    line-height: 1.6;
+}
+
+/* Highlight key terms */
+strong, b {
+    color: #f472b6;
+    font-weight: 600;
+}
+
+em, i {
+    color: #67e8f9;
+    font-style: italic;
 }
 """
 
@@ -160,17 +196,30 @@ CLOZE_MODEL = genanki.Model(
 
 
 def format_code(text: str) -> str:
-    """Format code snippets in text."""
-    # Simple code detection and formatting
-    # If the answer looks like code (has common code patterns), wrap in <code>
-    code_indicators = ['()', '.', '=', '[', ']', 'import ', 'from ', 'def ', 'class ']
+    """Format code snippets in text - conservative detection."""
+    # Skip if already has HTML tags
+    if text.startswith('<') or '<code>' in text or '<pre>' in text:
+        return text
 
-    if any(ind in text for ind in code_indicators) and not text.startswith('<'):
-        # Check if it's a multi-statement (has ;)
-        if ';' in text or '\n' in text:
+    # Strong code indicators - definitely code
+    strong_indicators = ['import ', 'from ', 'def ', 'class ', ' = ', '()', '[]',
+                         '.fit(', '.predict(', '.transform(', 'print(', 'return ',
+                         'if ', 'for ', 'while ', 'lambda ', '.__', '::']
+
+    # Check for strong indicators
+    has_strong = any(ind in text for ind in strong_indicators)
+
+    # Additional check: looks like a function call (word followed by parentheses with content)
+    func_call = re.search(r'\w+\([^)]*\)', text)
+
+    # Only format if it has strong indicators AND looks like actual code
+    if has_strong and func_call:
+        # Multi-line or multiple statements
+        if '\n' in text or '; ' in text:
             return f'<pre>{text}</pre>'
         else:
             return f'<code>{text}</code>'
+
     return text
 
 
