@@ -1,0 +1,57 @@
+Type	Front	Back	Tags
+Basic	What makes sequential data different from standard ML data?	Elements appear in order and are not independent (not IID)	chapter15::sequential-data
+Basic	What is the difference between time series and general sequential data?	Time series has a time dimension; sequential data like text is ordered but not time-based	chapter15::sequential-data
+Basic	What is many-to-one sequence modeling?	Sequence input, fixed output (e.g., sentiment analysis)	chapter15::sequence-modeling
+Basic	What is one-to-many sequence modeling?	Fixed input, sequence output (e.g., image captioning)	chapter15::sequence-modeling
+Basic	What is many-to-many sequence modeling?	Both input and output are sequences (can be synchronized or delayed)	chapter15::sequence-modeling
+Basic	What distinguishes RNNs from feedforward networks?	RNNs have recurrent edges giving them memory of past events	chapter15::vanilla-rnn
+Cloze	In RNN, hidden layer receives input from x(t) and {{c1::h(t-1)}}		chapter15::vanilla-rnn
+Cloze	Three RNN weight matrices: {{c1::Wxh}} (input to hidden), {{c2::Whh}} (recurrent), {{c3::Who}} (hidden to output)		chapter15::vanilla-rnn
+Cloze	RNN hidden state: h(t) = {{c1::activation(Wxh*x(t) + Whh*h(t-1) + bh)}}		chapter15::vanilla-rnn
+Basic	Why are RNN weights shared across time?	Allows processing sequences of varying lengths with same parameters	chapter15::vanilla-rnn
+Cloze	At t=0, RNN hidden units are initialized to {{c1::zeros or small random values}}		chapter15::vanilla-rnn
+Cloze	Default activation in nn.RNN is {{c1::tanh}}		chapter15::pytorch-rnn
+Cloze	{{c1::nn.RNN}} creates basic recurrent layer in PyTorch		chapter15::pytorch-rnn
+Basic	What is Backpropagation Through Time (BPTT)?	RNN learning where overall loss is sum of all time step losses	chapter15::bptt
+Basic	What causes vanishing gradient problem in RNNs?	When |w| < 1, w^(t-k) becomes very small for large t-k	chapter15::vanishing-gradients
+Basic	What causes exploding gradient problem in RNNs?	When |w| > 1, w^(t-k) becomes very large for large t-k	chapter15::exploding-gradients
+Basic	What is solution 1 to RNN gradient problems?	Gradient clipping	chapter15::gradient-problems
+Basic	What is solution 2 to RNN gradient problems?	Truncated BPTT	chapter15::gradient-problems
+Basic	What is solution 3 to RNN gradient problems?	LSTM cells	chapter15::gradient-problems
+Basic	How does gradient clipping work?	Assigns cut-off value to gradients exceeding a threshold	chapter15::gradient-clipping
+Basic	How does Truncated BPTT work?	Limits backpropagation to most recent N steps	chapter15::tbptt
+Basic	Who invented LSTM?	Sepp Hochreiter and Jurgen Schmidhuber in 1997	chapter15::lstm
+Basic	What is the main purpose of LSTM?	Overcome vanishing gradients while modeling long-range dependencies	chapter15::lstm
+Cloze	LSTM has {{c1::three}} gates: forget, input, and output		chapter15::lstm
+Basic	What is the cell state in LSTM?	Recurrent edge with weight w=1, allowing information flow without decay	chapter15::lstm
+Basic	What does the forget gate control?	How much of previous cell state to retain (sigmoid 0-1)	chapter15::lstm
+Cloze	Forget gate: f_t = {{c1::sigmoid(Wxf*x(t) + Whf*h(t-1) + bf)}}		chapter15::lstm
+Basic	What do input gate and candidate value control?	How much new information to add to cell state	chapter15::lstm
+Cloze	Cell state update: C(t) = {{c1::(C(t-1) * f_t) + (i_t * C_tilde)}}		chapter15::lstm
+Basic	What does the output gate control?	What parts of cell state to output to hidden state	chapter15::lstm
+Cloze	LSTM hidden state: h(t) = {{c1::o_t * tanh(C(t))}}		chapter15::lstm
+Basic	Was forget gate part of original LSTM?	No, added in 2000 by Gers, Schmidhuber, and Cummins	chapter15::lstm
+Basic	What is GRU?	Simpler RNN (2014) with fewer parameters than LSTM, comparable performance	chapter15::gru
+Cloze	{{c1::nn.LSTM}} creates LSTM layer in PyTorch		chapter15::pytorch-rnn
+Cloze	{{c1::nn.GRU}} creates GRU layer in PyTorch		chapter15::pytorch-rnn
+Cloze	{{c1::batch_first=True}} makes input shape (batch, seq_len, features)		chapter15::pytorch-rnn
+Cloze	nn.LSTM returns output and tuple of ({{c1::hidden_state}}, {{c2::cell_state}})		chapter15::pytorch-rnn
+Basic	What is nn.Embedding for?	Mapping tokens to dense vectors, learning meaningful representations	chapter15::embeddings
+Cloze	Embedding matrix has dimensions {{c1::(vocab_size, embedding_dim)}}		chapter15::embeddings
+Basic	What is one advantage of embeddings over one-hot encoding?	Reduces dimensionality	chapter15::embeddings
+Basic	What is another advantage of embeddings?	Can learn meaningful representations during training	chapter15::embeddings
+Cloze	{{c1::padding_idx}} specifies token that won't update gradients		chapter15::embeddings
+Basic	Why use pack_padded_sequence?	Efficiently handle variable-length sequences without wasting computation on padding	chapter15::pytorch-rnn
+Basic	What is a bidirectional RNN?	Processes sequences in both directions, capturing past and future context	chapter15::bidirectional-rnn
+Cloze	{{c1::bidirectional=True}} makes layer process both directions		chapter15::bidirectional-rnn
+Basic	How are bidirectional RNN outputs combined?	Usually concatenated, but can be summed, multiplied, or averaged	chapter15::bidirectional-rnn
+Basic	What is character-level language modeling?	Predicting next character using memory of previously seen characters	chapter15::language-modeling
+Basic	What is autoregression in text generation?	Each predicted character is fed back as input to predict the next	chapter15::language-modeling
+Cloze	For multiclass language modeling, use {{c1::CrossEntropyLoss}}		chapter15::language-modeling
+Cloze	For binary sentiment analysis, use {{c1::BCELoss}}		chapter15::sentiment-analysis
+Basic	How do you control randomness in text generation?	Scale logits by factor alpha before sampling	chapter15::text-generation
+Cloze	Hidden state dimension is specified by {{c1::hidden_size}} parameter		chapter15::pytorch-rnn
+Cloze	Stack multiple RNN layers with {{c1::num_layers}} parameter		chapter15::pytorch-rnn
+Basic	For many-to-one tasks, which hidden state is used?	Final hidden state from last time step	chapter15::sentiment-analysis
+Cloze	Index 0 typically reserved for {{c1::padding tokens}}		chapter15::embeddings
+Cloze	For bidirectional LSTM, FC layer input size should be {{c1::rnn_hidden_size * 2}}		chapter15::bidirectional-rnn

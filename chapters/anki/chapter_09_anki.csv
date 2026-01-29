@@ -1,0 +1,53 @@
+Type	Front	Back	Tags
+Basic	What is the goal of linear regression?	To model the relationship between features and a continuous target variable	chapter09::linear-regression
+Basic	What is the equation for simple (univariate) linear regression?	y = w1*x + b	chapter09::linear-regression
+Basic	What are residuals in linear regression?	The vertical distances from the regression line to actual training examples	chapter09::linear-regression
+Basic	What is the equation for multiple linear regression?	y = w1*x1 + w2*x2 + ... + wm*xm + b	chapter09::linear-regression
+Cloze	The {{c1::regression line}} is the best-fitting straight line through training examples		chapter09::linear-regression
+Basic	What does OLS (Ordinary Least Squares) minimize?	The sum of squared vertical distances (residuals) between predicted and actual values	chapter09::ols
+Cloze	MSE (Mean Squared Error) = {{c1::(1/n) * sum((y - y_hat)^2)}}		chapter09::metrics
+Basic	What is the relationship between OLS regression and Adaline?	OLS is Adaline without the threshold function, producing continuous values	chapter09::ols
+Basic	Why is feature standardization important for gradient descent in linear regression?	It helps gradient descent converge faster and more reliably	chapter09::gradient-descent
+Cloze	The closed-form OLS solution is w = {{c1::(X^T * X)^(-1) * X^T * y}}		chapter09::ols
+Basic	What is a disadvantage of the closed-form solution for linear regression?	It can be expensive to invert the matrix for large datasets, or matrix may be singular	chapter09::ols
+Basic	What is the RANSAC algorithm used for?	Fitting regression models robustly against outliers	chapter09::ransac
+Cloze	RANSAC uses {{c1::MAD (Median Absolute Deviation)}} by default to determine inlier threshold		chapter09::ransac
+Basic	What is a residual plot used for?	To diagnose regression models - detect nonlinearity, outliers, and check error distribution	chapter09::diagnostics
+Basic	What should a good residual plot look like?	Residuals randomly scattered around zero with no visible patterns	chapter09::diagnostics
+Cloze	MAE (Mean Absolute Error) = {{c1::(1/n) * sum(|y - y_hat|)}}		chapter09::metrics
+Basic	Why might MAE be preferred over MSE?	MAE shows error on original unit scale (e.g., dollars instead of dollars-squared)	chapter09::metrics
+Cloze	R^2 = 1 - ({{c1::SSE}} / {{c2::SST}})		chapter09::metrics
+Cloze	SSE (Sum of Squared Errors) = {{c1::sum((y - y_hat)^2)}}		chapter09::metrics
+Cloze	SST (Total Sum of Squares) = {{c1::sum((y - mean(y))^2)}}		chapter09::metrics
+Basic	What does R^2 = 1 mean?	The model fits the data perfectly with MSE = 0	chapter09::metrics
+Basic	Can R^2 be negative?	Yes, on test data - indicates model fits worse than a horizontal line	chapter09::metrics
+Basic	Why is R^2 often preferred over MSE?	R^2 is standardized (bounded 0-1 for training) and scale-independent	chapter09::metrics
+Cloze	{{c1::Ridge}} regression adds L2 penalty (squared sum of weights) to MSE		chapter09::regularization
+Cloze	{{c1::LASSO}} uses L1 regularization and can produce sparse models		chapter09::regularization
+Basic	Why does LASSO tend to produce sparse weights?	L1's diamond-shaped constraint has corners on axes where weights become zero	chapter09::regularization
+Basic	What is a limitation of LASSO when m > n?	LASSO can select at most n features	chapter09::regularization
+Cloze	{{c1::Elastic Net}} combines both L1 and L2 penalties		chapter09::regularization
+Basic	What is the advantage of Elastic Net over LASSO?	Can select more than n features when m > n	chapter09::regularization
+Basic	What does increasing regularization strength do to model weights?	Shrinks weights toward zero, reducing model complexity	chapter09::regularization
+Cloze	In scikit-learn, regularization strength is called {{c1::alpha}}		chapter09::regularization
+Basic	Is the bias term regularized in Ridge/LASSO/Elastic Net?	No, only the feature weights are penalized	chapter09::regularization
+Cloze	Polynomial regression equation: y = w1*x + w2*x^2 + ... + {{c1::wd*x^d}} + b		chapter09::polynomial-regression
+Basic	Is polynomial regression considered a linear model?	Yes, because the regression coefficients are linear	chapter09::polynomial-regression
+Basic	What is a risk of using high-degree polynomial features?	Increasing polynomial degree increases overfitting risk	chapter09::polynomial-regression
+Basic	How do you add polynomial features in scikit-learn?	Use PolynomialFeatures(degree=d) from sklearn.preprocessing	chapter09::polynomial-regression
+Basic	What impurity measure is used for decision tree regression?	MSE within each node (within-node variance)	chapter09::decision-trees
+Cloze	In decision tree regression, the predicted value at a leaf is the {{c1::mean}} of training examples there		chapter09::decision-trees
+Basic	Why don't decision trees require feature scaling?	They analyze one feature at a time, not weighted combinations	chapter09::decision-trees
+Basic	What is a limitation of decision tree regression?	They produce step-wise constant predictions, not continuous	chapter09::decision-trees
+Basic	How does random forest regression differ from decision tree regression?	Random forest averages predictions from multiple trees	chapter09::random-forest
+Basic	What is the only hyperparameter typically tuned in random forests?	The number of trees (n_estimators)	chapter09::random-forest
+Cloze	Pearson correlation coefficient r ranges from {{c1::-1}} to {{c2::+1}}		chapter09::correlation
+Cloze	Pearson's r = {{c1::covariance(x,y) / (std(x) * std(y))}}		chapter09::correlation
+Basic	What is a correlation matrix?	A square matrix containing Pearson correlations between all pairs of features	chapter09::correlation
+Basic	Does linear regression require normally distributed variables?	No, normality is only needed for certain statistical tests, not fitting	chapter09::assumptions
+Basic	What is a scatterplot matrix used for?	Visualizing pairwise correlations, detecting outliers, examining distributions	chapter09::eda
+Basic	What does a pattern in a residual plot indicate?	The model is unable to capture some explanatory information	chapter09::diagnostics
+Basic	What does the slope (w) represent in simple linear regression?	The change in predicted target for each unit increase in the explanatory variable	chapter09::linear-regression
+Basic	What does the intercept (b) represent in simple linear regression?	The predicted value when all explanatory variables are zero	chapter09::linear-regression
+Cloze	For standardized features, the y-intercept is always {{c1::0}}		chapter09::linear-regression
+Basic	What does high training R^2 but low test R^2 indicate?	The model is overfitting	chapter09::overfitting

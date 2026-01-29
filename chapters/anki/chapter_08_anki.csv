@@ -1,0 +1,51 @@
+Type	Front	Back	Tags
+Basic	What is sentiment analysis?	A subfield of NLP concerned with analyzing the sentiment (attitude/opinion) of documents	chapter08::sentiment-analysis
+Basic	What is the bag-of-words model?	A text representation that creates a vocabulary and constructs feature vectors with word occurrence counts	chapter08::bag-of-words
+Cloze	In the bag-of-words model, feature vectors are mostly {{c1::sparse}}		chapter08::bag-of-words
+Cloze	The {{c1::CountVectorizer}} class in scikit-learn constructs bag-of-words models		chapter08::bag-of-words
+Basic	Why is word order ignored in the bag-of-words model?	It only counts word occurrences, treating documents as unordered collections	chapter08::bag-of-words
+Cloze	Raw term frequency tf(t, d) represents the {{c1::number of times a term t occurs in document d}}		chapter08::term-frequency
+Basic	What problem does TF-IDF solve that raw term frequencies cannot?	TF-IDF downweights common words that don't help distinguish between document classes	chapter08::tfidf
+Cloze	TF-IDF = {{c1::Term Frequency}} x {{c2::Inverse Document Frequency}}		chapter08::tfidf
+Cloze	IDF is calculated as: idf(t,d) = log({{c1::n_d / (1 + df(d,t))}})		chapter08::tfidf
+Basic	Why is the logarithm used in the IDF formula?	To ensure low document frequencies are not given too much weight	chapter08::tfidf
+Cloze	{{c1::TfidfTransformer}} transforms raw term frequencies into tf-idf values		chapter08::tfidf
+Cloze	{{c1::TfidfVectorizer}} combines CountVectorizer and TfidfTransformer		chapter08::tfidf
+Basic	What is L2 normalization in TF-IDF context?	Dividing each tf-idf vector by its Euclidean length, resulting in unit length vectors	chapter08::tfidf
+Cloze	Setting {{c1::smooth_idf=True}} adds 1 to denominator, preventing division by zero		chapter08::tfidf
+Basic	What is preprocessing step 1 for bag-of-words?	Remove HTML markup	chapter08::preprocessing
+Basic	What is preprocessing step 2 for bag-of-words?	Handle emoticons (preserve for sentiment)	chapter08::preprocessing
+Basic	What is preprocessing step 3 for bag-of-words?	Remove punctuation and non-letter characters	chapter08::preprocessing
+Basic	What is preprocessing step 4 for bag-of-words?	Convert to lowercase	chapter08::preprocessing
+Basic	What is preprocessing step 5 for bag-of-words?	Optionally remove stop words	chapter08::preprocessing
+Cloze	The regex {{c1::<[^>]*>}} removes HTML markup		chapter08::preprocessing
+Basic	Why are emoticons preserved during preprocessing for sentiment analysis?	They carry strong sentiment signals (:) = positive, :( = negative)	chapter08::preprocessing
+Cloze	{{c1::Stop words}} are extremely common words like "the", "is", "and"		chapter08::preprocessing
+Basic	When is stop word removal most beneficial?	When working with raw or normalized term frequencies; TF-IDF already downweights frequent words	chapter08::preprocessing
+Cloze	{{c1::Tokenization}} is splitting text documents into individual words or tokens		chapter08::tokenization
+Cloze	{{c1::Word stemming}} transforms words into their root form		chapter08::stemming
+Basic	What is the Porter stemmer algorithm?	The original stemming algorithm from 1979 using suffix stripping rules	chapter08::stemming
+Basic	What is the difference between stemming and lemmatization?	Stemming uses simple suffix stripping and may produce non-words; lemmatization obtains grammatically correct forms	chapter08::stemming
+Cloze	The 1-gram ({{c1::unigram}}) model treats each single word as a token		chapter08::ngrams
+Basic	What is an n-gram in NLP?	A contiguous sequence of n items (words, letters, or symbols)	chapter08::ngrams
+Cloze	In CountVectorizer, {{c1::ngram_range}} controls which n-gram sizes to include		chapter08::ngrams
+Basic	Why might n-grams of size 3 or 4 be useful for spam filtering?	Larger n-grams capture phrases that may be characteristic of spam	chapter08::ngrams
+Basic	What classifier was used for sentiment analysis in the chapter?	Logistic regression with L2 regularization	chapter08::classification
+Cloze	The IMDb movie review dataset contains {{c1::50,000}} reviews		chapter08::dataset
+Basic	What accuracy was achieved on IMDb sentiment classification?	Approximately 90%	chapter08::classification
+Basic	What is out-of-core learning?	Training models on datasets too large to fit in memory using incremental mini-batches	chapter08::out-of-core
+Cloze	{{c1::SGDClassifier}} with partial_fit() enables out-of-core learning		chapter08::out-of-core
+Basic	Why can't CountVectorizer be used for out-of-core learning?	It requires the complete vocabulary in memory and access to all documents	chapter08::out-of-core
+Cloze	{{c1::HashingVectorizer}} uses the hashing trick for out-of-core learning		chapter08::out-of-core
+Basic	What is the hashing trick?	Hashing words directly to feature indices without building a vocabulary	chapter08::out-of-core
+Basic	What is the tradeoff when setting features in HashingVectorizer?	More features reduce hash collisions but increase memory usage	chapter08::out-of-core
+Cloze	{{c1::Latent Dirichlet Allocation (LDA)}} is a generative probabilistic model for topic modeling		chapter08::topic-modeling
+Basic	What is the input to LDA for topic modeling?	A bag-of-words matrix (word counts), not TF-IDF	chapter08::topic-modeling
+Basic	What two matrices does LDA produce?	Document-to-topic matrix and word-to-topic matrix	chapter08::topic-modeling
+Cloze	The number of {{c1::topics}} must be specified manually for LDA		chapter08::topic-modeling
+Basic	Why set max_df (maximum document frequency) for LDA?	Words in too many documents are likely common words not associated with specific topics	chapter08::topic-modeling
+Basic	What is the Naive Bayes classifier?	A probabilistic classifier assuming feature independence, popular for text classification	chapter08::classification
+Cloze	The {{c1::word2vec}} algorithm learns word embeddings that capture semantic relationships		chapter08::embeddings
+Basic	How does SGD enable out-of-core learning?	It updates weights using one example or small batch at a time, not needing entire dataset in memory	chapter08::out-of-core
+Basic	Why convert text to lowercase for sentiment analysis?	Assuming capitalization doesn't carry semantically relevant sentiment information	chapter08::preprocessing
+Cloze	NLTK provides {{c1::127}} English stop words		chapter08::preprocessing

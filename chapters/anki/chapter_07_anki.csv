@@ -1,0 +1,50 @@
+Type	Front	Back	Tags
+Basic	What is the goal of ensemble methods?	To combine different classifiers into a meta-classifier with better generalization than individual classifiers	chapter07::ensemble-basics
+Basic	What is the difference between majority voting and plurality voting?	Majority voting requires >50% of votes; plurality voting selects the class with most votes even if <50%	chapter07::voting
+Cloze	In ensemble majority voting, the final prediction is {{c1::the mode (most frequent class label)}}		chapter07::voting
+Basic	Under what condition does an ensemble outperform individual classifiers?	Each base classifier performs better than random and classifiers are independent with uncorrelated errors	chapter07::ensemble-basics
+Basic	What is a weighted majority vote?	Each classifier's vote is multiplied by a weight coefficient reflecting its importance	chapter07::voting
+Basic	Why use predicted class probabilities instead of labels for voting?	It can be useful when classifiers are well-calibrated, allowing more nuanced combination	chapter07::voting
+Basic	Why standardize features when using logistic regression and KNN in voting ensembles?	These algorithms are not scale-invariant unlike decision trees	chapter07::voting
+Basic	What is bagging?	Bootstrap aggregating - drawing bootstrap samples to train individual classifiers, then combining via voting	chapter07::bagging
+Cloze	In bagging, bootstrap samples are drawn {{c1::with replacement}}		chapter07::bagging
+Cloze	Bagging reduces {{c1::variance}} but is ineffective at reducing {{c2::bias}}		chapter07::bagging
+Basic	Why does bagging reduce variance but not bias?	Averaging reduces random fluctuations but each model has similar bias	chapter07::bagging
+Basic	What type of base classifier works best with bagging?	Classifiers with low bias but high variance, such as unpruned decision trees	chapter07::bagging
+Cloze	Random forests are bagging that also uses {{c1::random feature subsets}} at each split		chapter07::random-forest
+Basic	What is boosting?	Training weak learners sequentially, where each subsequent learner focuses on previously misclassified examples	chapter07::boosting
+Cloze	A typical weak learner in boosting is a {{c1::decision tree stump}} (max depth of 1)		chapter07::boosting
+Cloze	AdaBoost increases weights for {{c1::misclassified}} samples		chapter07::adaboost
+Basic	What is step 1 of the original boosting algorithm?	Draw random subset d1 without replacement, train classifier C1	chapter07::boosting
+Basic	What is step 2 of the original boosting algorithm?	Draw d2, add 50% previously misclassified examples, train C2	chapter07::boosting
+Basic	What is step 3 of the original boosting algorithm?	Find examples where C1 and C2 disagree, train C3 on those	chapter07::boosting
+Basic	What is step 4 of the original boosting algorithm?	Combine C1, C2, C3 via majority voting	chapter07::boosting
+Cloze	In AdaBoost, sample weights are initialized to {{c1::uniform weights that sum to 1}}		chapter07::adaboost
+Cloze	The AdaBoost coefficient alpha is {{c1::0.5 * log((1-epsilon)/epsilon)}} where epsilon is weighted error rate		chapter07::adaboost
+Cloze	In AdaBoost, correctly classified examples have weights {{c1::decreased}}		chapter07::adaboost
+Cloze	In AdaBoost, misclassified examples have weights {{c1::increased}}		chapter07::adaboost
+Basic	How does AdaBoost make the final prediction?	Weighted majority vote where each classifier's vote is weighted by its coefficient alpha	chapter07::adaboost
+Cloze	In AdaBoost, classifier coefficient alpha is {{c1::larger}} for classifiers with {{c2::lower}} error rates		chapter07::adaboost
+Basic	How does boosting affect bias and variance compared to bagging?	Boosting can reduce both bias and variance; bagging mainly reduces variance	chapter07::boosting
+Basic	When would you choose bagging over boosting?	When you have high variance (overfitting) and need computational efficiency (parallelizable)	chapter07::ensemble-comparison
+Basic	When would you choose boosting over bagging?	When you have weak learners that underfit and need to reduce bias	chapter07::ensemble-comparison
+Basic	What is stacking?	Two-level ensemble where level-one classifiers feed predictions to a level-two meta-classifier	chapter07::stacking
+Cloze	In stacking, a common choice for the meta-classifier is {{c1::logistic regression}}		chapter07::stacking
+Basic	What is gradient boosting?	Boosting variant that trains decision trees iteratively on prediction errors (residuals)	chapter07::gradient-boosting
+Cloze	Gradient boosting trees typically have max depth of {{c1::3 to 6}}		chapter07::gradient-boosting
+Basic	What is the pseudo-residual in gradient boosting?	The negative gradient of the loss function with respect to predicted values	chapter07::gradient-boosting
+Cloze	In gradient boosting, trees output {{c1::log(odds)}} values rather than probabilities		chapter07::gradient-boosting
+Cloze	The gradient boosting learning rate is typically between {{c1::0.01 and 0.1}}		chapter07::gradient-boosting
+Cloze	In gradient boosting, the model is updated as F_m(x) = F_{m-1}(x) + {{c1::eta * gamma_m}}		chapter07::gradient-boosting
+Basic	What is XGBoost?	Extreme Gradient Boosting - optimized implementation with speed improvements	chapter07::xgboost
+Cloze	XGBoost stands for {{c1::Extreme Gradient Boosting}}		chapter07::xgboost
+Basic	What other gradient boosting implementations exist?	LightGBM, CatBoost, scikit-learn's HistGradientBoostingClassifier	chapter07::gradient-boosting
+Basic	What is the tradeoff when using ensemble methods?	Improved performance vs increased computational complexity	chapter07::ensemble-comparison
+Basic	Why didn't Netflix implement the winning Netflix Prize ensemble solution?	Its complexity made it infeasible in production despite accuracy improvements	chapter07::ensemble-comparison
+Cloze	In bagging, each bootstrap sample contains {{c1::the same number}} of examples as the original dataset		chapter07::bagging
+Basic	What is the purpose of the learning rate in boosting?	To scale each tree's contribution, preventing overfitting with smaller rates	chapter07::boosting
+Cloze	In AdaBoost, a classifier with error rate of {{c1::0.5}} has coefficient alpha of {{c2::0}}		chapter07::adaboost
+Basic	Why normalize weights after each AdaBoost iteration?	To maintain a valid probability distribution that sums to 1	chapter07::adaboost
+Basic	What does it mean for classifiers to be independent in ensemble analysis?	They make uncorrelated errors	chapter07::ensemble-basics
+Basic	What is the relationship between n_estimators and learning_rate in gradient boosting?	Inverse relationship: lower rates require more trees	chapter07::gradient-boosting
+Cloze	Ensemble methods combine classifiers to cancel out their individual {{c1::weaknesses}}		chapter07::ensemble-basics

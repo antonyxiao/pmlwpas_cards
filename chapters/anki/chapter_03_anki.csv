@@ -1,0 +1,86 @@
+Type	Front	Back	Tags
+Basic	What is the "no free lunch theorem" in machine learning?	No single classifier works best across all possible scenarios; performance depends on the underlying data	chapter03::algorithm-selection
+Basic	What is step 1 of training a supervised ML algorithm?	Select features and collect labeled training examples	chapter03::ml-workflow
+Basic	What is step 2 of training a supervised ML algorithm?	Choose a performance metric	chapter03::ml-workflow
+Basic	What is step 3 of training a supervised ML algorithm?	Choose a learning algorithm and train a model	chapter03::ml-workflow
+Basic	What is step 4 of training a supervised ML algorithm?	Evaluate the model's performance	chapter03::ml-workflow
+Basic	What is step 5 of training a supervised ML algorithm?	Change settings and tune the model	chapter03::ml-workflow
+Cloze	In scikit-learn, {{c1::train_test_split}} from {{c2::model_selection}} is used to split data into training and test sets		chapter03::sklearn-api
+Cloze	The {{c1::stratify}} parameter in train_test_split ensures {{c2::same proportions of class labels}} in training and test subsets		chapter03::data-splitting
+Cloze	In scikit-learn's StandardScaler, {{c1::fit()}} estimates parameters from training data		chapter03::preprocessing
+Cloze	In scikit-learn's StandardScaler, {{c1::transform()}} standardizes data using learned parameters		chapter03::preprocessing
+Basic	Why should you use the same scaling parameters for both training and test data?	So that values are comparable - using different parameters would introduce inconsistencies	chapter03::preprocessing
+Cloze	Most algorithms in scikit-learn support multiclass classification via the {{c1::one-versus-rest (OvR)}} method		chapter03::multiclass
+Cloze	In scikit-learn's Perceptron, the {{c1::eta0}} parameter is equivalent to the learning rate		chapter03::perceptron
+Basic	What happens if the learning rate is too large during training?	The algorithm will overshoot the global loss minimum	chapter03::hyperparameters
+Basic	What happens if the learning rate is too small during training?	The algorithm requires more epochs until convergence, making learning slow	chapter03::hyperparameters
+Cloze	In scikit-learn, {{c1::accuracy_score(y_test, y_pred)}} calculates classification accuracy		chapter03::sklearn-api
+Basic	Why is the perceptron algorithm typically not recommended in practice?	It never converges on datasets that are not perfectly linearly separable	chapter03::perceptron
+Basic	What is logistic regression used for?	Classification, not regression - it models class probabilities	chapter03::logistic-regression
+Cloze	The odds in favor of an event can be written as {{c1::p/(1-p)}}		chapter03::logistic-regression
+Cloze	The logit function is defined as logit(p) = {{c1::log(p/(1-p))}}		chapter03::logistic-regression
+Cloze	The logistic sigmoid function is defined as sigma(z) = {{c1::1/(1+e^(-z))}}		chapter03::logistic-regression
+Basic	What is the relationship between logit and sigmoid functions?	The sigmoid is the inverse of the logit function	chapter03::logistic-regression
+Cloze	In logistic regression, the sigmoid output sigma(z) = 0.5 when z = {{c1::0}}		chapter03::logistic-regression
+Basic	How does logistic regression differ from Adaline?	Only the activation function differs: Adaline uses identity, logistic regression uses sigmoid	chapter03::logistic-regression
+Cloze	In logistic regression, predicted probability is converted to class label: y_hat = 1 if sigma(z) >= {{c1::0.5}}, else 0		chapter03::logistic-regression
+Basic	Why is logistic regression popular in medicine?	It provides class-membership probability estimates, useful for reporting chances of disease	chapter03::logistic-regression
+Cloze	The logistic loss when y=1 is {{c1::-log(sigma(z))}}		chapter03::logistic-regression
+Cloze	The logistic loss when y=0 is {{c1::-log(1-sigma(z))}}		chapter03::logistic-regression
+Basic	What is the purpose of the log-likelihood function in logistic regression?	To maximize the probability of correctly classifying training examples	chapter03::logistic-regression
+Cloze	Scikit-learn's LogisticRegression uses {{c1::lbfgs}} as the default solver		chapter03::sklearn-api
+Cloze	In scikit-learn's LogisticRegression, {{c1::predict_proba()}} returns class membership probabilities		chapter03::sklearn-api
+Basic	What is overfitting in machine learning?	When a model performs well on training data but fails to generalize to unseen data	chapter03::overfitting
+Basic	What is underfitting in machine learning?	When a model is not complex enough to capture patterns, resulting in low performance on both training and test data	chapter03::overfitting
+Cloze	L2 regularization adds the term {{c1::(lambda/2n) * ||w||^2}} to the loss function		chapter03::regularization
+Basic	What is the purpose of regularization?	To prevent overfitting by penalizing extreme parameter values	chapter03::regularization
+Cloze	In scikit-learn's LogisticRegression, the parameter {{c1::C}} is inversely proportional to regularization strength		chapter03::regularization
+Basic	What happens when you decrease the C parameter in LogisticRegression?	Regularization strength increases, weight coefficients shrink toward zero	chapter03::regularization
+Basic	Why is feature scaling important for regularization?	All features must be on comparable scales; otherwise features with larger scales are penalized disproportionately	chapter03::regularization
+Cloze	In SVMs, the optimization objective is to {{c1::maximize the margin}}		chapter03::svm
+Cloze	The training examples closest to the SVM's decision boundary are called {{c1::support vectors}}		chapter03::svm
+Basic	Why do SVMs with large margins tend to perform better?	Large margins have lower generalization error; small margins are more prone to overfitting	chapter03::svm
+Cloze	The {{c1::slack variable}} was introduced by Vladimir Vapnik for {{c2::soft-margin classification}}		chapter03::svm
+Basic	How does the C parameter affect SVM classification?	Large C = tighter fit to training data; Small C = more tolerant of misclassifications, wider margin	chapter03::svm
+Basic	When would you choose logistic regression over SVM?	When you need probability estimates or a simpler, more interpretable model	chapter03::algorithm-comparison
+Basic	When would you choose SVM over logistic regression?	When you care about points near the decision boundary or need kernel methods for nonlinear boundaries	chapter03::algorithm-comparison
+Cloze	Scikit-learn's SVC class uses the {{c1::LIBSVM}} library		chapter03::sklearn-api
+Cloze	For very large datasets, scikit-learn's {{c1::SGDClassifier}} class supports online learning		chapter03::sklearn-api
+Cloze	To create an SVM with SGDClassifier, use {{c1::loss='hinge'}}		chapter03::sklearn-api
+Basic	What is the kernel trick in SVMs?	Mapping data to a higher-dimensional space where it becomes linearly separable, without explicitly computing the transformation	chapter03::kernel-svm
+Cloze	The RBF (Gaussian) kernel is defined as k(x^i, x^j) = exp({{c1::-gamma * ||x^i - x^j||^2}})		chapter03::kernel-svm
+Cloze	In the RBF kernel, {{c1::gamma}} controls the influence radius of training examples		chapter03::kernel-svm
+Basic	What does a larger gamma value do in RBF kernel SVM?	Leads to tighter, bumpier decision boundaries that fit training data more closely	chapter03::kernel-svm
+Basic	What does a smaller gamma value do in RBF kernel SVM?	Leads to smoother decision boundaries	chapter03::kernel-svm
+Basic	What makes decision trees attractive as a classification model?	Their interpretability - you can trace the decisions made to arrive at a classification	chapter03::decision-trees
+Cloze	Decision trees split nodes at each step to maximize {{c1::information gain (IG)}}		chapter03::decision-trees
+Cloze	The three common impurity measures for decision trees are {{c1::Gini impurity}}, {{c2::entropy}}, and {{c3::classification error}}		chapter03::decision-trees
+Cloze	Entropy for a node t is defined as I_H(t) = {{c1::-sum(p(i|t) * log2(p(i|t)))}}		chapter03::decision-trees
+Cloze	Gini impurity for a node t is defined as I_G(t) = {{c1::1 - sum(p(i|t)^2)}}		chapter03::decision-trees
+Basic	When is entropy maximal for a binary classification node?	When classes are uniformly distributed (p=0.5 for each class)	chapter03::decision-trees
+Basic	Why is classification error not recommended for growing decision trees?	It is less sensitive to changes in class probabilities of nodes	chapter03::decision-trees
+Cloze	In scikit-learn's DecisionTreeClassifier, use {{c1::max_depth}} to limit tree depth		chapter03::sklearn-api
+Basic	Why don't decision trees require feature scaling?	They make splits based on threshold comparisons within each feature independently	chapter03::decision-trees
+Basic	What is a random forest?	An ensemble of decision trees that averages predictions to build a more robust model	chapter03::random-forest
+Basic	What is step 1 of the random forest algorithm?	Draw bootstrap sample of size n with replacement	chapter03::random-forest
+Basic	What is step 2 of the random forest algorithm?	Grow decision tree, selecting d random features at each node	chapter03::random-forest
+Basic	What is step 3 of the random forest algorithm?	Repeat k times	chapter03::random-forest
+Basic	What is step 4 of the random forest algorithm?	Aggregate predictions by majority vote	chapter03::random-forest
+Cloze	In random forests, {{c1::bootstrap sampling}} means randomly selecting n examples {{c2::with replacement}}		chapter03::random-forest
+Basic	Why do random forests select only a subset of features at each node split?	To increase diversity among trees by reducing correlation between them	chapter03::random-forest
+Cloze	A reasonable default for features at each split in random forests is {{c1::sqrt(m)}} where m is total features		chapter03::random-forest
+Basic	What is the main hyperparameter to tune in random forests?	The number of trees (n_estimators)	chapter03::random-forest
+Basic	Why don't random forests typically need pruning?	The ensemble is robust to noise from averaging predictions among trees	chapter03::random-forest
+Cloze	In scikit-learn's RandomForestClassifier, {{c1::n_estimators}} sets the number of trees		chapter03::sklearn-api
+Basic	Why is KNN called a "lazy learner"?	It doesn't learn a discriminative function; it memorizes the training dataset and computes at query time	chapter03::knn
+Basic	What is step 1 of the KNN algorithm?	Choose number k and distance metric	chapter03::knn
+Basic	What is step 2 of the KNN algorithm?	Find k-nearest neighbors of the data point to classify	chapter03::knn
+Basic	What is step 3 of the KNN algorithm?	Assign class label by majority vote	chapter03::knn
+Cloze	The Minkowski distance generalizes Euclidean (p={{c1::2}}) and Manhattan (p={{c2::1}}) distances		chapter03::knn
+Basic	Why is feature standardization important for KNN with Euclidean distance?	So each feature contributes equally to distance calculation	chapter03::knn
+Basic	How does choice of k affect KNN's bias-variance tradeoff?	Small k: low bias, high variance; Large k: high bias, low variance	chapter03::knn
+Basic	What is the curse of dimensionality for KNN?	As dimensions increase, even closest neighbors become far away, giving poor estimates	chapter03::knn
+Basic	What is the difference between parametric and non-parametric models?	Parametric: fixed number of parameters; Non-parametric: parameters change with training data size	chapter03::ml-concepts
+Basic	What is instance-based learning?	A subcategory of non-parametric models that memorize the training dataset	chapter03::ml-concepts
+Basic	What is the main disadvantage of memory-based approaches like KNN?	Computational complexity grows linearly with training dataset size	chapter03::knn
+Basic	What is the main advantage of memory-based approaches like KNN?	The classifier immediately adapts as new training data is collected	chapter03::knn

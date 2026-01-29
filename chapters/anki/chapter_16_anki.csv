@@ -1,0 +1,51 @@
+Type	Front	Back	Tags
+Basic	What limitation does the RNN encoder-decoder have for long sequences?	Compresses entire input into a single hidden state, causing information loss	chapter16::rnn-attention
+Basic	What is the purpose of attention in RNNs?	Allows access to all input elements at each time step with relevance weights	chapter16::rnn-attention
+Cloze	In attention, context vector: c_i = {{c1::sum of alpha_ij * h(j)}}		chapter16::rnn-attention
+Cloze	Attention weights: alpha_ij = {{c1::exp(e_ij) / sum_k exp(e_ik)}}		chapter16::rnn-attention
+Basic	What is the difference between RNN attention and self-attention?	RNN attention connects encoder-decoder; self-attention captures dependencies within a single sequence	chapter16::self-attention
+Basic	What are the three stages of self-attention?	Derive importance weights, normalize with softmax, compute weighted sum	chapter16::self-attention
+Cloze	Basic self-attention: z(i) = {{c1::sum of alpha_ij * x(j)}}		chapter16::self-attention
+Basic	What is scaled dot-product attention?	Attention with learnable Q, K, V projection matrices making it trainable	chapter16::scaled-attention
+Cloze	Query: q(i) = {{c1::U_q * x(i)}}		chapter16::scaled-attention
+Cloze	Key: k(i) = {{c1::U_k * x(i)}}		chapter16::scaled-attention
+Cloze	Value: v(i) = {{c1::U_v * x(i)}}		chapter16::scaled-attention
+Basic	Why scale attention scores by 1/sqrt(d_k)?	Large dot products push softmax into regions with tiny gradients	chapter16::scaled-attention
+Basic	What is multi-head attention?	Multiple attention operations in parallel with different projections	chapter16::multi-head
+Basic	How are multi-head outputs combined?	Concatenated and linearly projected back to original dimension	chapter16::multi-head
+Cloze	Original transformer uses {{c1::8}} attention heads and {{c2::6}} encoder/decoder layers		chapter16::transformer-architecture
+Basic	What are the two sublayers in each encoder layer?	Multi-head self-attention and feedforward layer	chapter16::transformer-architecture
+Basic	What is masked attention in the decoder?	Hides future positions to prevent "cheating" during training	chapter16::transformer-architecture
+Basic	Why are positional encodings necessary?	Attention and feedforward layers are permutation-invariant; need to inject order	chapter16::positional-encoding
+Cloze	PE(i,2k) = {{c1::sin(pos/10000^(2k/d_model))}}		chapter16::positional-encoding
+Basic	Why use layer normalization instead of batch normalization?	No batch dependencies; enables small minibatches and better parallelization	chapter16::layer-norm
+Cloze	Self-attention path length between any two positions: {{c1::O(1)}}		chapter16::attention
+Cloze	RNN path length between any two positions: {{c1::O(n)}}		chapter16::attention
+Basic	What are the two stages of transformer training?	Pre-training on unlabeled data, then fine-tuning on labeled data	chapter16::pretraining
+Basic	What architecture does GPT use?	Decoder-only with unidirectional (left-to-right) attention	chapter16::gpt
+Cloze	GPT-1: {{c1::110M}} params, GPT-2: {{c2::1.5B}}, GPT-3: {{c3::175B}}		chapter16::gpt
+Basic	What is zero-shot learning in GPT context?	Performing tasks without any task-specific examples	chapter16::gpt
+Basic	What is few-shot learning in GPT context?	Providing a few examples in the prompt (in-context learning)	chapter16::gpt
+Basic	What does BERT stand for?	Bidirectional Encoder Representations from Transformers	chapter16::bert
+Basic	What architecture does BERT use?	Encoder-only with bidirectional attention	chapter16::bert
+Cloze	BERT input: {{c1::token embeddings}} + {{c2::segment embeddings}} + {{c3::position embeddings}}		chapter16::bert
+Basic	What are BERT's two pre-training tasks?	Masked Language Modeling (MLM) and Next-Sentence Prediction (NSP)	chapter16::bert
+Cloze	In BERT MLM, {{c1::15%}} of words are selected for masking		chapter16::bert
+Basic	How does BERT handle masked words?	80% [MASK], 10% random word, 10% unchanged	chapter16::bert
+Basic	What is the purpose of [CLS] token?	Classification token - placeholder for predicted label	chapter16::bert
+Basic	What is the purpose of [SEP] token?	Separates sentences and denotes end of each sentence	chapter16::bert
+Basic	Why is BERT better for classification than GPT?	Bidirectional encoding provides higher quality representations	chapter16::bert
+Basic	What does BART stand for?	Bidirectional and Auto-Regressive Transformer	chapter16::bart
+Basic	What is unique about BART's architecture?	Combines BERT's bidirectional encoder with GPT's autoregressive decoder	chapter16::bart
+Basic	What is one of BART's corruption methods?	Token masking	chapter16::bart
+Basic	What is another BART corruption method?	Token deletion	chapter16::bart
+Basic	What is text infilling in BART?	Replacing spans with single [MASK] tokens	chapter16::bart
+Basic	What is DistilBERT?	Smaller BERT via knowledge distillation - 40% fewer params, 95% performance	chapter16::bert-finetuning
+Basic	What is attention_mask in transformer inputs?	Binary tensor: 1 for real tokens, 0 for padding tokens to ignore	chapter16::bert-finetuning
+Cloze	Self-attention formula: softmax({{c1::QK^T / sqrt(d_k)}})V		chapter16::attention
+Cloze	Self-attention complexity: {{c1::O(n^2)}} where n is sequence length		chapter16::attention
+Basic	What is cross-attention in the decoder?	Queries from decoder, keys and values from encoder outputs	chapter16::transformer-architecture
+Cloze	Original transformer: d_model = {{c1::512}}, d_ff = {{c2::2048}}		chapter16::transformer-architecture
+Basic	What is the "Add & Normalize" operation?	Residual connection plus layer normalization	chapter16::transformer-architecture
+Basic	What is teacher forcing?	Decoder receives ground-truth previous words during training	chapter16::transformer-architecture
+Cloze	Transformer introduced in paper "{{c1::Attention Is All You Need}}" (2017)		chapter16::transformer-architecture

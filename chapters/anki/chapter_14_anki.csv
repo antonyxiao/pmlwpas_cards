@@ -1,0 +1,56 @@
+Type	Front	Back	Tags
+Basic	What biological system inspired CNNs?	The visual cortex - neurons respond differently to different light patterns	chapter14::cnn-fundamentals
+Basic	Who proposed the first CNN architecture for handwritten digits?	Yann LeCun and colleagues in 1989	chapter14::cnn-fundamentals
+Basic	What is a feature hierarchy in CNNs?	Low-level features (edges) combine layer-wise to form high-level features (shapes)	chapter14::feature-hierarchy
+Basic	What is the local receptive field in a CNN?	The local patch of pixels a single feature map element is connected to	chapter14::receptive-field
+Basic	Why are CNNs more parameter-efficient than fully connected networks?	Sparse connectivity (local patches) and parameter sharing (same kernel across image)	chapter14::convolution
+Basic	What is the typical CNN architecture pattern?	Convolutional and pooling layers followed by fully connected layers	chapter14::cnn-architecture
+Cloze	In convolution y = x * w, x is {{c1::input}} and w is the {{c2::filter/kernel}}		chapter14::convolution
+Cloze	Adding zeros around input for convolution is called {{c1::zero-padding}}		chapter14::padding
+Basic	What is full padding mode?	p = m - 1, increases output dimensions	chapter14::padding
+Basic	What is same padding mode?	Padding chosen so output size equals input size	chapter14::padding
+Basic	What is valid padding mode?	p = 0, no padding	chapter14::padding
+Basic	Why is same padding most commonly used?	Preserves spatial size, making network design more convenient	chapter14::padding
+Cloze	CNN output size: o = {{c1::floor((n + 2p - m) / s) + 1}}		chapter14::output-size
+Basic	What is stride in convolution?	The number of cells by which the filter shifts along the input	chapter14::convolution
+Basic	What is the difference between convolution and cross-correlation?	Convolution rotates the filter; cross-correlation does not. DL frameworks use cross-correlation but call it convolution	chapter14::convolution
+Cloze	{{c1::nn.Conv2d}} creates a 2D convolutional layer in PyTorch		chapter14::pytorch-cnn
+Cloze	Key nn.Conv2d parameters: {{c1::in_channels}}, {{c2::out_channels}}, {{c3::kernel_size}}		chapter14::pytorch-cnn
+Basic	What is the default input format for Conv2d?	NCHW: N = batch, C = channels, H = height, W = width	chapter14::pytorch-cnn
+Cloze	{{c1::Max-pooling}} takes the maximum from a neighborhood		chapter14::pooling
+Cloze	{{c1::Mean-pooling}} computes the average of a neighborhood		chapter14::pooling
+Basic	What is one advantage of pooling layers?	Introduces local invariance - small local changes don't change the result	chapter14::pooling
+Basic	What is another advantage of pooling layers?	Decreases feature size for computational efficiency	chapter14::pooling
+Basic	Do pooling layers have learnable parameters?	No, only convolutional and fully connected layers have trainable parameters	chapter14::pooling
+Basic	What is an alternative to pooling for reducing feature map size?	Convolutional layers with stride 2	chapter14::pooling
+Cloze	{{c1::nn.MaxPool2d}} creates max-pooling in PyTorch		chapter14::pytorch-pooling
+Cloze	{{c1::nn.AvgPool2d}} creates average-pooling in PyTorch		chapter14::pytorch-pooling
+Cloze	RGB images have {{c1::3}} channels; grayscale has {{c2::1}} channel		chapter14::channels
+Basic	How does convolution work with multiple input channels?	Convolve each channel separately, then sum the results	chapter14::channels
+Cloze	For a conv layer, kernel tensor is {{c1::4-dimensional}}: width x height x C_in x C_out		chapter14::feature-maps
+Cloze	L2 regularization uses {{c1::weight_decay}} parameter in PyTorch optimizers		chapter14::regularization
+Basic	What is dropout?	Randomly setting a fraction of hidden units to zero during training	chapter14::dropout
+Cloze	Common dropout probability is p = {{c1::0.5}}		chapter14::dropout
+Basic	How does dropout differ between training and inference?	Training: units randomly dropped. Inference: all units active, activations scaled	chapter14::dropout
+Cloze	{{c1::nn.Dropout(p=0.5)}} creates dropout layer in PyTorch		chapter14::pytorch-dropout
+Cloze	For binary classification, use {{c1::nn.BCELoss()}} with probability outputs		chapter14::loss-functions
+Cloze	For binary classification with logits, use {{c1::nn.BCEWithLogitsLoss()}}		chapter14::loss-functions
+Cloze	For multiclass classification, use {{c1::nn.CrossEntropyLoss()}} with logits		chapter14::loss-functions
+Cloze	Sigmoid for {{c1::binary}} classification; softmax for {{c2::multiclass}}		chapter14::activation
+Cloze	After 2x2 max-pooling with stride 2, spatial dimensions are reduced by {{c1::half}}		chapter14::pooling
+Cloze	{{c1::nn.Flatten()}} converts feature maps to 1D vector		chapter14::pytorch-cnn
+Basic	What is data augmentation?	Techniques for modifying or synthesizing more training data to reduce overfitting	chapter14::data-augmentation
+Cloze	Common augmentation: {{c1::random cropping}}, {{c2::horizontal flipping}}, {{c3::contrast adjustment}}		chapter14::data-augmentation
+Cloze	{{c1::transforms.RandomCrop()}} crops a random region		chapter14::pytorch-transforms
+Cloze	{{c1::transforms.CenterCrop()}} crops from the center		chapter14::pytorch-transforms
+Cloze	{{c1::transforms.RandomHorizontalFlip()}} randomly flips images		chapter14::pytorch-transforms
+Cloze	{{c1::transforms.Compose()}} chains transformations		chapter14::pytorch-transforms
+Basic	Should data augmentation be applied to validation/test sets?	No, only to training. Use deterministic transforms for evaluation	chapter14::data-augmentation
+Basic	What is global average-pooling?	Pooling where pool size equals feature map size, outputting 1x1 per channel	chapter14::global-pooling
+Basic	What is the advantage of global average-pooling over flattening?	Dramatically reduces parameters (e.g., 256 vs 16,384 units)	chapter14::global-pooling
+Basic	How do you switch between training and evaluation mode?	model.train() for training; model.eval() for evaluation	chapter14::pytorch-training
+Cloze	CelebA dataset contains {{c1::202,599}} images with {{c2::40}} binary attributes		chapter14::celeba-dataset
+Cloze	PyTorch image format from ToTensor(): pixel values in {{c1::[0, 1]}}		chapter14::pytorch-transforms
+Cloze	Same padding with 3x3 kernel and stride 1: padding = {{c1::1}}		chapter14::padding
+Cloze	Modern CNNs typically use kernel sizes {{c1::1x1}}, {{c2::3x3}}, or {{c3::5x5}}		chapter14::convolution
+Cloze	When using dropout, call {{c1::model.train()}} during training and {{c2::model.eval()}} during inference		chapter14::pytorch-dropout

@@ -1,0 +1,37 @@
+Type	Front	Back	Tags
+Basic	Why can't CNNs be directly applied to graphs?	Graphs have irregular structure with varying node degrees and no spatial ordering	chapter18::gnn-motivation
+Basic	What is a graph neural network (GNN)?	Deep learning model that operates on graph data, capturing dependencies via connectivity	chapter18::gnn-basics
+Basic	What is one application area of GNNs?	Text classification	chapter18::gnn-applications
+Basic	What is another application area of GNNs?	Drug discovery	chapter18::gnn-applications
+Basic	What is a third application area of GNNs?	Recommender systems	chapter18::gnn-applications
+Basic	What is a fourth application area of GNNs?	Traffic forecasting	chapter18::gnn-applications
+Cloze	Graph G is defined as {{c1::(V, E)}}: V = {{c2::nodes}}, E = {{c3::edges}}		chapter18::graph-representation
+Cloze	Adjacency matrix A has shape {{c1::|V| x |V|}}		chapter18::adjacency-matrix
+Basic	How do directed vs undirected graphs differ in adjacency matrix?	Undirected: symmetric (x_ij = x_ji); Directed: not necessarily symmetric	chapter18::graph-types
+Basic	What is a labeled graph?	Graph with additional features associated with nodes and/or edges	chapter18::labeled-graphs
+Cloze	Node feature matrix X has shape {{c1::|V| x f_V}}		chapter18::graph-representation
+Basic	How are molecules represented as graphs?	Atoms = nodes, bonds = edges, with features for atom/bond types	chapter18::molecular-graphs
+Cloze	Three priors for convolutions: {{c1::shift-invariance}}, {{c2::locality}}, {{c3::hierarchy}}		chapter18::convolution-priors
+Cloze	{{c1::Permutation invariance}} means node ordering doesn't affect GNN output		chapter18::permutation-invariance
+Cloze	Graph convolution: x'_i = x_i W_1 + {{c1::sum over j in N(i)}} x_j W_2 + b		chapter18::graph-convolution
+Basic	What is the message-passing framework?	Nodes collect messages from neighbors, aggregate, and update their representations	chapter18::message-passing
+Cloze	Message aggregation: m_i = {{c1::sum over j in N(i)}} M_t(h_i, h_j, e_ij)		chapter18::message-passing
+Cloze	Node update: h_i^(t+1) = {{c1::U_t(h_i^(t), m_i)}}		chapter18::message-passing
+Basic	Why does stacking convolutions capture distant relationships?	Each layer sees immediate neighbors; k layers = k hops of information	chapter18::receptive-field
+Cloze	Global pooling aggregates node embeddings into {{c1::fixed-sized output}}		chapter18::global-pooling
+Cloze	Global pooling functions must be {{c1::permutation invariant}} (sum, max, mean)		chapter18::global-pooling
+Basic	How does batching work for varying-size graphs?	Treat batch as single large graph with disconnected subgraphs	chapter18::batching
+Cloze	PyTorch Geometric Data: {{c1::x}} for nodes, {{c2::edge_attr}} for edges, {{c3::edge_index}} for connectivity		chapter18::pytorch-geometric
+Basic	What is NNConv?	Graph conv where neighbor weights are parameterized by neural network on edge features	chapter18::nnconv
+Basic	What is the QM9 dataset?	~134,000 small organic molecules with physical property labels	chapter18::qm9-dataset
+Cloze	Graph Laplacian: L = {{c1::D - A}} (D = degree matrix, A = adjacency)		chapter18::graph-laplacian
+Cloze	Degree matrix D is {{c1::diagonal}} with D_ii = {{c2::degree of node i}}		chapter18::degree-matrix
+Basic	What is the main drawback of spectral graph convolutions?	O(n^3) eigendecomposition complexity; weight matrix depends on graph size	chapter18::spectral-convolution
+Basic	What three graph-level tasks exist?	Node classification, edge prediction, graph classification	chapter18::graph-tasks
+Basic	What is DiffPool?	Learns soft cluster assignment matrix for hierarchical graph pooling	chapter18::diffpool
+Basic	What is top-k pooling?	Drops nodes based on projection score against learnable vector	chapter18::topk-pooling
+Cloze	GraphNorm: {{c1::alpha}} controls how much mean to discard		chapter18::graphnorm
+Basic	What are Graph Attention Networks (GATs)?	GNNs using attention to weight neighbor importance during aggregation	chapter18::graph-attention
+Basic	What must aggregation functions be for message passing?	Permutation invariant - output doesn't depend on neighbor order	chapter18::aggregation
+Cloze	Receptive field of one graph conv: {{c1::immediate neighbors}}		chapter18::receptive-field
+Cloze	To capture k hops away: stack {{c1::k convolutions}}		chapter18::receptive-field

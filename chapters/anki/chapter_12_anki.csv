@@ -1,0 +1,63 @@
+Type	Front	Back	Tags
+Basic	What is PyTorch?	A deep learning library developed primarily by Facebook AI Research (FAIR) lab	chapter12::pytorch-basics
+Basic	Why are GPUs preferred over CPUs for training neural networks?	GPUs have many more cores and higher floating-point capacity for parallel computations	chapter12::gpu-training
+Basic	What is the Global Interpreter Lock (GIL) in Python?	A lock that limits Python to execution on one core by default	chapter12::performance
+Basic	How does PyTorch define its computation graph?	Implicitly during execution via imperative programming, rather than constructing in advance	chapter12::computation-graph
+Cloze	In PyTorch, a scalar is a rank-{{c1::0}} tensor		chapter12::tensors
+Cloze	In PyTorch, a vector is a rank-{{c1::1}} tensor		chapter12::tensors
+Cloze	In PyTorch, a matrix is a rank-{{c1::2}} tensor		chapter12::tensors
+Cloze	PyTorch tensors are optimized for {{c1::automatic differentiation}} and can run on {{c2::GPUs}}		chapter12::tensors
+Cloze	To create a tensor from a Python list, use {{c1::torch.tensor(list)}}		chapter12::tensor-creation
+Cloze	To create a tensor from NumPy array, use {{c1::torch.from_numpy(array)}}		chapter12::tensor-creation
+Cloze	{{c1::torch.ones(2, 3)}} creates a 2x3 tensor filled with ones		chapter12::tensor-creation
+Cloze	{{c1::torch.zeros(2, 3)}} creates a 2x3 tensor filled with zeros		chapter12::tensor-creation
+Cloze	{{c1::torch.rand(2, 3)}} creates a tensor with random values from Uniform[0, 1)		chapter12::tensor-creation
+Cloze	To change tensor data type, use the {{c1::.to()}} method		chapter12::tensor-manipulation
+Cloze	{{c1::torch.transpose(t, 0, 1)}} swaps dimensions 0 and 1		chapter12::tensor-manipulation
+Cloze	{{c1::torch.reshape()}} changes shape without changing total elements		chapter12::tensor-manipulation
+Cloze	{{c1::torch.squeeze()}} removes dimensions of size 1		chapter12::tensor-manipulation
+Cloze	Set random seed with {{c1::torch.manual_seed(seed)}}		chapter12::tensor-operations
+Cloze	{{c1::torch.multiply(t1, t2)}} computes element-wise product		chapter12::tensor-operations
+Cloze	{{c1::torch.matmul()}} performs matrix multiplication		chapter12::tensor-operations
+Cloze	{{c1::torch.cat([A, B], axis=0)}} concatenates along existing dimension		chapter12::tensor-operations
+Cloze	{{c1::torch.stack([A, B], axis=1)}} creates new dimension and stacks		chapter12::tensor-operations
+Basic	What is the purpose of DataLoader?	Automatic batching, shuffling, and parallel data loading	chapter12::data-loading
+Cloze	DataLoader {{c1::shuffle=True}} randomizes order each epoch		chapter12::data-loading
+Cloze	The {{c1::drop_last}} parameter drops the last incomplete batch		chapter12::data-loading
+Basic	What methods must a custom Dataset class implement?	__init__(), __getitem__(idx), and optionally __len__()	chapter12::dataset
+Cloze	{{c1::TensorDataset}} creates a dataset from tensors with element-wise correspondence		chapter12::dataset
+Cloze	{{c1::torchvision.transforms.Compose()}} chains transformations		chapter12::transforms
+Cloze	{{c1::transforms.ToTensor()}} converts PIL Image or NumPy array to tensor		chapter12::transforms
+Cloze	{{c1::torchvision.datasets}} provides built-in datasets like MNIST, CIFAR		chapter12::datasets
+Basic	What is torch.nn used for?	Building neural networks with predefined layers and loss functions	chapter12::nn-module
+Cloze	{{c1::nn.Linear(input_size, output_size)}} creates a fully connected layer		chapter12::nn-module
+Cloze	Custom networks inherit from {{c1::nn.Module}}		chapter12::nn-module
+Basic	What two methods must a custom nn.Module define?	__init__() to define layers and forward() for data flow	chapter12::nn-module
+Cloze	{{c1::nn.MSELoss()}} computes mean squared error		chapter12::loss-functions
+Cloze	{{c1::nn.CrossEntropyLoss()}} computes cross-entropy for multiclass		chapter12::loss-functions
+Cloze	{{c1::torch.optim.SGD(model.parameters(), lr=0.01)}} creates SGD optimizer		chapter12::optimizers
+Cloze	{{c1::torch.optim.Adam(model.parameters(), lr=0.001)}} creates Adam optimizer		chapter12::optimizers
+Basic	Why call optimizer.zero_grad() before each training step?	PyTorch accumulates gradients by default; zero_grad clears previous gradients	chapter12::training-loop
+Cloze	{{c1::loss.backward()}} computes gradients		chapter12::autograd
+Cloze	{{c1::optimizer.step()}} updates parameters using gradients		chapter12::training-loop
+Cloze	Get predicted class labels with {{c1::torch.argmax(pred, dim=1)}}		chapter12::training-loop
+Cloze	{{c1::torch.save(model, path)}} saves model architecture and parameters		chapter12::model-saving
+Cloze	{{c1::torch.load(path)}} reloads a saved model		chapter12::model-saving
+Cloze	{{c1::torch.save(model.state_dict(), path)}} saves only parameters		chapter12::model-saving
+Cloze	Load parameters with {{c1::model.load_state_dict(torch.load(path))}}		chapter12::model-saving
+Basic	What file extensions are used for PyTorch models?	.pt or .pth	chapter12::model-saving
+Cloze	{{c1::model.eval()}} sets model to evaluation mode		chapter12::model-evaluation
+Basic	What is the vanishing gradient problem?	Saturated sigmoid/tanh cause derivatives approaching zero, slowing learning	chapter12::activation-functions
+Basic	Why is tanh sometimes preferred over sigmoid in hidden layers?	Outputs centered around zero (-1, 1) improve convergence	chapter12::activation-functions
+Cloze	Sigmoid outputs values in range {{c1::(0, 1)}}		chapter12::activation-functions
+Cloze	Tanh outputs values in range {{c1::(-1, 1)}}		chapter12::activation-functions
+Cloze	{{c1::ReLU}} is max(0, z) and solves vanishing gradients for positive inputs		chapter12::activation-functions
+Basic	Why does ReLU help with vanishing gradients?	ReLU's derivative is always 1 for positive inputs	chapter12::activation-functions
+Basic	What is softmax used for?	Converting logits to class probabilities that sum to 1	chapter12::activation-functions
+Cloze	Softmax: {{c1::e^(z_i) / sum(e^(z_j))}}		chapter12::activation-functions
+Cloze	Enable gradient computation with {{c1::requires_grad=True}}		chapter12::autograd
+Cloze	{{c1::with torch.no_grad():}} disables gradients during inference		chapter12::autograd
+Basic	Why standardize features before training?	Ensures similar scales for faster, more reliable convergence	chapter12::preprocessing
+Cloze	Standardization formula: {{c1::(X - mean(X)) / std(X)}}		chapter12::preprocessing
+Basic	What preprocessing applies to test data?	Use training set's statistics (mean, std), not test set's	chapter12::preprocessing
+Cloze	{{c1::num_workers}} specifies subprocesses for parallel data loading		chapter12::data-loading

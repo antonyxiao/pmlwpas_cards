@@ -1,0 +1,48 @@
+Type	Front	Back	Tags
+Basic	What is deep learning?	A subfield of ML concerned with training artificial neural networks with many layers efficiently	chapter11::deep-learning-basics
+Basic	Who rediscovered backpropagation in 1986?	D.E. Rumelhart, G.E. Hinton, and R.J. Williams	chapter11::history
+Cloze	The {{c1::Adaline}} algorithm uses gradient descent to learn weight coefficients		chapter11::adaline
+Cloze	In gradient descent, weights are updated as: w := w + {{c1::delta_w}} where delta_w = -eta * gradient		chapter11::gradient-descent
+Cloze	A {{c1::multilayer perceptron (MLP)}} is a fully connected feedforward network with at least one hidden layer		chapter11::mlp-architecture
+Basic	Why is Adaline called "single-layer"?	It has only one set of weights between input and output	chapter11::network-architecture
+Cloze	In an MLP, {{c1::W^(h)}} connects input to hidden layer, {{c2::W^(out)}} connects hidden to output		chapter11::weight-matrices
+Basic	What is the vanishing gradient problem?	Loss gradients become increasingly small in early layers as more layers are added	chapter11::vanishing-gradients
+Cloze	The sigmoid activation function is: sigma(z) = {{c1::1 / (1 + e^(-z))}}		chapter11::activation-functions
+Basic	Why do MLPs require nonlinear activation functions?	Without nonlinearity, stacking linear layers equals a single linear transformation	chapter11::activation-functions
+Cloze	The sigmoid maps net input to a {{c1::logistic distribution}} in range {{c2::0 to 1}}		chapter11::sigmoid-function
+Basic	What does "feedforward" mean in neural networks?	Each layer serves as input to the next without loops or feedback	chapter11::feedforward
+Basic	What is step 1 of the MLP learning procedure?	Forward propagate training data to generate output	chapter11::training-procedure
+Basic	What is step 2 of the MLP learning procedure?	Calculate the loss comparing output to targets	chapter11::training-procedure
+Basic	What is step 3 of the MLP learning procedure?	Backpropagate to compute gradients and update weights	chapter11::training-procedure
+Cloze	One-hot encoding for 3 classes: class 0 = {{c1::[1,0,0]}}, class 1 = {{c2::[0,1,0]}}, class 2 = {{c3::[0,0,1]}}		chapter11::one-hot-encoding
+Basic	Why is one-hot encoding used for multiclass classification in NNs?	It allows one output node per class for OvA-style classification	chapter11::one-hot-encoding
+Cloze	The net input z = {{c1::w^T * x + b}}		chapter11::net-input
+Basic	Why are weights initialized to small random values?	Random values break symmetry; small values prevent activation saturation	chapter11::weight-initialization
+Cloze	Bias units are typically initialized to {{c1::zeros}}		chapter11::bias-initialization
+Basic	What is the purpose of the bias unit in a neural network?	It allows the activation function to be shifted, providing additional flexibility	chapter11::bias-units
+Cloze	MNIST has {{c1::70,000}} images, each {{c2::28x28}} pixels ({{c3::784}} features)		chapter11::mnist-dataset
+Basic	Why normalize pixels to [-1, 1] for neural network training?	Centered, normalized inputs make optimization more stable	chapter11::data-preprocessing
+Cloze	SGD approximates loss from {{c1::a single sample}} (online) or {{c2::a small subset}} (mini-batch)		chapter11::sgd
+Basic	What is one advantage of mini-batch over full-batch learning?	Updates weights more frequently, accelerating learning	chapter11::mini-batch-learning
+Basic	What is another advantage of mini-batch learning?	Noise helps escape local minima	chapter11::mini-batch-learning
+Cloze	Backpropagation is a special case of {{c1::reverse-mode automatic differentiation}}		chapter11::backpropagation
+Basic	What is the chain rule?	d/dx[f(g(x))] = (df/dg) * (dg/dx)	chapter11::chain-rule
+Cloze	The derivative of sigmoid is: {{c1::sigma(z) * (1 - sigma(z))}}		chapter11::sigmoid-derivative
+Basic	Why does sigmoid derivative cause vanishing gradients?	Maximum value is 0.25; multiplying many values <1 makes gradients exponentially small	chapter11::vanishing-gradients
+Basic	What indicates overfitting during NN training?	Increasing gap between training accuracy (improving) and validation accuracy (plateauing)	chapter11::overfitting
+Basic	What is one technique to reduce overfitting in NNs?	L2 regularization	chapter11::regularization
+Basic	What is another technique to reduce overfitting in NNs?	Dropout	chapter11::regularization
+Basic	What is L2 regularization in neural networks?	Adding penalty proportional to squared weight magnitude: L_reg = L + lambda * sum(w^2)	chapter11::l2-regularization
+Basic	How do you convert NN outputs to predicted class labels?	Use argmax to find index of highest activation	chapter11::prediction
+Basic	What is the expected accuracy of an untrained model on 10 classes?	Approximately 10% (random guessing)	chapter11::baseline-accuracy
+Basic	What happens if learning rate is too high?	Optimizer overshoots minimum; loss may increase or oscillate	chapter11::learning-rate
+Basic	What happens if learning rate is too low?	Training becomes extremely slow; may get stuck in poor local minima	chapter11::learning-rate
+Cloze	{{c1::Skip connections}} in ResNets allow gradients to flow through {{c2::shortcut paths}}		chapter11::skip-connections
+Basic	What is a learning rate scheduler?	A strategy that changes learning rate during training	chapter11::learning-rate-scheduler
+Cloze	The term "epoch" refers to {{c1::one complete pass through the entire training dataset}}		chapter11::training-terminology
+Basic	Why use a separate validation set during NN training?	To detect overfitting, tune hyperparameters, and decide when to stop	chapter11::validation-set
+Cloze	PyTorch, released in {{c1::September 2016}}, can optimize on {{c2::GPUs}}		chapter11::pytorch
+Basic	Why are GPUs important for training neural networks?	They perform parallel matrix operations providing 10-100x speedups	chapter11::gpu-computing
+Cloze	{{c1::Cross-entropy loss}} is more common than MSE for classification in practice		chapter11::cross-entropy
+Basic	What is dropout?	Randomly setting a fraction of neuron outputs to zero during training	chapter11::dropout
+Basic	How does dropout prevent overfitting?	Forces network to learn redundant representations; acts as ensemble of smaller networks	chapter11::dropout
