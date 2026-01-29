@@ -1,57 +1,73 @@
 Type	Front	Back	Tags
-Basic	What is the purpose of scikit-learn's Pipeline class?	To chain transformation steps with a final estimator, ensuring consistent transformations on training and test data	chapter06::pipelines
-Basic	What happens when you call fit() on a Pipeline?	Data passes through each transformer via fit() and transform() until the final estimator is fitted	chapter06::pipelines
-Basic	What happens when you call predict() on a fitted Pipeline?	Data passes through all transformers via transform() only, then the final estimator returns predictions	chapter06::pipelines
-Basic	What is the holdout method for model evaluation?	Splitting data into separate training and test datasets	chapter06::cross-validation
-Basic	Why is using only a test set for model selection problematic?	Reusing the same test set repeatedly makes it part of training data indirectly, causing overfitting	chapter06::cross-validation
-Basic	What is the training dataset used for in the three-split method?	For fitting models	chapter06::cross-validation
-Basic	What is the validation dataset used for?	For model selection and hyperparameter tuning	chapter06::cross-validation
-Basic	What is the test dataset used for?	For final unbiased performance estimate	chapter06::cross-validation
-Cloze	In k-fold cross-validation, the dataset is split into {{c1::k}} folds		chapter06::cross-validation
-Cloze	In k-fold cross-validation, {{c1::k-1}} folds are used for training and {{c2::1}} fold for testing		chapter06::cross-validation
-Cloze	{{c1::Stratified}} k-fold cross-validation preserves {{c2::class label proportions}} in each fold		chapter06::cross-validation
-Basic	What is a good standard value for k in k-fold cross-validation?	k=10, based on empirical studies showing best bias-variance tradeoff	chapter06::cross-validation
-Basic	When should you increase k in cross-validation?	With relatively small training sets	chapter06::cross-validation
-Basic	When should you decrease k in cross-validation?	With large datasets, for computational efficiency	chapter06::cross-validation
-Cloze	{{c1::Leave-one-out cross-validation (LOOCV)}} sets k equal to n (number of training examples)		chapter06::cross-validation
-Basic	How do you use cross_val_score in scikit-learn?	cross_val_score(estimator, X=X_train, y=y_train, cv=10, n_jobs=-1)	chapter06::cross-validation
-Basic	What does n_jobs=-1 do in cross_val_score?	Uses all available CPU cores for parallel evaluation	chapter06::cross-validation
-Basic	What do learning curves plot?	Training and validation accuracy as functions of training dataset size	chapter06::learning-curves
-Basic	What indicates high bias (underfitting) in a learning curve?	Both low training and low validation accuracy converging at a low value	chapter06::learning-curves
-Basic	What indicates high variance (overfitting) in a learning curve?	A large gap between high training accuracy and lower validation accuracy	chapter06::learning-curves
-Basic	How can you address high bias (underfitting)?	Increase model complexity, decrease regularization, use more powerful model	chapter06::learning-curves
-Basic	How can you address high variance (overfitting)?	Collect more data, reduce model complexity, increase regularization	chapter06::learning-curves
-Basic	What do validation curves plot?	Training and test accuracy as functions of a hyperparameter value	chapter06::validation-curves
-Basic	What is the difference between model parameters and hyperparameters?	Parameters are learned from data; hyperparameters are set before training	chapter06::hyperparameter-tuning
-Basic	What is grid search?	Exhaustive search evaluating model performance for every combination of hyperparameter values	chapter06::hyperparameter-tuning
-Basic	How do you access the best model after GridSearchCV?	gs.best_estimator_	chapter06::hyperparameter-tuning
-Basic	How do you access the best CV score after GridSearchCV?	gs.best_score_	chapter06::hyperparameter-tuning
-Basic	How do you access the optimal hyperparameters after GridSearchCV?	gs.best_params_	chapter06::hyperparameter-tuning
-Basic	What is the advantage of randomized search over grid search?	Samples from continuous distributions, exploring wider hyperparameter space more efficiently	chapter06::hyperparameter-tuning
-Cloze	In RandomizedSearchCV, use {{c1::scipy.stats.loguniform}} when hyperparameters span multiple orders of magnitude		chapter06::hyperparameter-tuning
-Basic	What is successive halving in hyperparameter search?	Starting with many configurations using limited resources, progressively eliminating bottom 50%	chapter06::hyperparameter-tuning
-Basic	What is nested cross-validation used for?	Comparing different ML algorithms fairly with nearly unbiased error estimates	chapter06::hyperparameter-tuning
-Cloze	A confusion matrix reports {{c1::True Positives}}, {{c2::True Negatives}}, {{c3::False Positives}}, and {{c4::False Negatives}}		chapter06::metrics
-Cloze	Accuracy = {{c1::(TP + TN) / (TP + TN + FP + FN)}}		chapter06::metrics
+Basic	What is a "pipeline" in ML?	Chain of transformations + final estimator	chapter06::prerequisites
+Basic	What is "cross-validation"?	Evaluating model on multiple data splits	chapter06::prerequisites
+Basic	What is a "fold" in CV?	One subset of the data	chapter06::prerequisites
+Basic	What is a "confusion matrix"?	Table of TP, TN, FP, FN counts	chapter06::prerequisites
+Basic	What is "ROC"?	Receiver Operating Characteristic	chapter06::prerequisites
+Basic	What is "AUC"?	Area Under the Curve	chapter06::prerequisites
+Basic	What is "class imbalance"?	One class has far more samples	chapter06::prerequisites
+Basic	What does Pipeline.fit() do?	Runs fit_transform on all steps, fit on final	chapter06::pipelines
+Basic	What does Pipeline.predict() do?	Runs transform on all steps, predict on final	chapter06::pipelines
+Basic	What is the holdout method?	Single train/test split	chapter06::cross-validation
+Basic	Why not reuse test set for tuning?	Causes indirect overfitting	chapter06::cross-validation
+Basic	What is training set for?	Fitting models	chapter06::cross-validation
+Basic	What is validation set for?	Tuning hyperparameters	chapter06::cross-validation
+Basic	What is test set for?	Final unbiased evaluation	chapter06::cross-validation
+Cloze	In k-fold CV, data splits into {{c1::k}} folds		chapter06::cross-validation
+Basic	How many folds used for training in k-fold?	k-1	chapter06::cross-validation
+Basic	How many folds used for testing in k-fold?	1	chapter06::cross-validation
+Basic	What is stratified k-fold?	Preserves class proportions in folds	chapter06::cross-validation
+Basic	Good default value for k?	10	chapter06::cross-validation
+Basic	When increase k?	Small datasets	chapter06::cross-validation
+Basic	When decrease k?	Large datasets (for speed)	chapter06::cross-validation
+Basic	What is LOOCV?	Leave-One-Out CV (k = n samples)	chapter06::cross-validation
+Basic	What do learning curves show?	Accuracy vs training set size	chapter06::learning-curves
+Basic	High bias sign in learning curve?	Both curves converge low	chapter06::learning-curves
+Basic	High variance sign in learning curve?	Large gap between curves	chapter06::learning-curves
+Basic	How to fix high bias?	More complex model, less regularization	chapter06::learning-curves
+Basic	How to fix high variance?	More data, more regularization	chapter06::learning-curves
+Basic	What do validation curves show?	Accuracy vs hyperparameter value	chapter06::validation-curves
+Basic	Parameters vs hyperparameters?	Parameters learned; hyperparameters set manually	chapter06::hyperparameter-tuning
+Basic	What is grid search?	Try all hyperparameter combinations	chapter06::hyperparameter-tuning
+Basic	What is randomized search?	Sample random hyperparameter combinations	chapter06::hyperparameter-tuning
+Basic	Advantage of randomized search?	Explores wider space, faster	chapter06::hyperparameter-tuning
+Basic	What is successive halving?	Eliminate bottom 50% iteratively	chapter06::hyperparameter-tuning
+Basic	What is nested CV?	CV for model selection + CV for evaluation	chapter06::hyperparameter-tuning
+Cloze	Confusion matrix: {{c1::TP}}, {{c2::TN}}, {{c3::FP}}, {{c4::FN}}		chapter06::metrics
+Cloze	Accuracy = {{c1::(TP + TN) / Total}}		chapter06::metrics
 Cloze	Precision = {{c1::TP / (TP + FP)}}		chapter06::metrics
-Cloze	Recall (Sensitivity) = {{c1::TP / (TP + FN)}}		chapter06::metrics
-Cloze	F1 score = {{c1::2 * (Precision * Recall) / (Precision + Recall)}}		chapter06::metrics
-Cloze	False Positive Rate (FPR) = {{c1::FP / (FP + TN)}}		chapter06::metrics
-Cloze	True Positive Rate (TPR) = {{c1::TP / (TP + FN)}}		chapter06::metrics
-Basic	When should you prioritize recall over precision?	When false negatives are costly (e.g., disease screening, fraud detection)	chapter06::metrics
-Basic	When should you prioritize precision over recall?	When false positives are costly (e.g., spam filtering)	chapter06::metrics
-Basic	Why is MCC considered superior to F1 for binary classification?	MCC considers all four confusion matrix values; F1 ignores true negatives	chapter06::metrics
-Basic	What does an ROC curve plot?	True Positive Rate (y) vs False Positive Rate (x) at different thresholds	chapter06::metrics
-Basic	What does the diagonal line represent in an ROC curve?	Random guessing (50% chance)	chapter06::metrics
-Basic	What is ROC AUC?	Area Under the ROC Curve - ranges from 0 to 1; higher is better	chapter06::metrics
-Cloze	Micro-averaging computes metrics from {{c1::aggregate TP, TN, FP, FN across all classes}}		chapter06::metrics
-Cloze	Macro-averaging computes metrics by {{c1::averaging metric values across all classes}}		chapter06::metrics
-Basic	What is class imbalance?	When one class is over-represented in the dataset	chapter06::class-imbalance
-Basic	What are three strategies for handling class imbalance?	Upsampling minority class, downsampling majority class, generating synthetic examples (SMOTE)	chapter06::class-imbalance
-Basic	How do you handle class imbalance in scikit-learn classifiers?	Set class_weight='balanced'	chapter06::class-imbalance
-Basic	What is SMOTE?	Synthetic Minority Over-sampling Technique - generates synthetic examples by interpolating between existing minority samples	chapter06::class-imbalance
-Basic	Why might accuracy be misleading for imbalanced datasets?	A model predicting only majority class can achieve high accuracy without learning anything useful	chapter06::class-imbalance
-Basic	What metrics are better than accuracy for imbalanced datasets?	Precision, recall, F1 score, MCC, or ROC AUC	chapter06::class-imbalance
-Basic	What does the stratify parameter do in train_test_split?	Preserves class proportions in both training and test splits	chapter06::cross-validation
-Basic	What does the refit parameter do in GridSearchCV?	When True, refits best_estimator_ to entire training set after finding optimal hyperparameters	chapter06::hyperparameter-tuning
-Basic	How do you access pipeline parameters in GridSearchCV param_grid?	Use 'stepname__parametername' format	chapter06::hyperparameter-tuning
+Cloze	Recall = {{c1::TP / (TP + FN)}}		chapter06::metrics
+Cloze	F1 = {{c1::2 * Precision * Recall / (Precision + Recall)}}		chapter06::metrics
+Cloze	FPR = {{c1::FP / (FP + TN)}}		chapter06::metrics
+Cloze	TPR = {{c1::TP / (TP + FN)}}		chapter06::metrics
+Basic	When prioritize recall?	False negatives are costly	chapter06::metrics
+Basic	Example: prioritize recall?	Disease screening	chapter06::metrics
+Basic	When prioritize precision?	False positives are costly	chapter06::metrics
+Basic	Example: prioritize precision?	Spam filtering	chapter06::metrics
+Basic	Why MCC better than F1?	Uses all four confusion matrix values	chapter06::metrics
+Basic	What does ROC curve plot?	TPR vs FPR at different thresholds	chapter06::metrics
+Basic	What does ROC diagonal mean?	Random guessing	chapter06::metrics
+Basic	What is ROC AUC range?	0 to 1 (higher is better)	chapter06::metrics
+Basic	What is micro-averaging?	Aggregate TP/TN/FP/FN across classes	chapter06::metrics
+Basic	What is macro-averaging?	Average metric across classes	chapter06::metrics
+Basic	Three ways to handle class imbalance?	Upsample minority, downsample majority, SMOTE	chapter06::class-imbalance
+Basic	What is SMOTE?	Generate synthetic minority samples	chapter06::class-imbalance
+Basic	How SMOTE generates samples?	Interpolate between existing minority samples	chapter06::class-imbalance
+Basic	sklearn parameter for imbalance?	class_weight='balanced'	chapter06::class-imbalance
+Basic	Why accuracy misleading for imbalance?	Predicting majority class gives high accuracy	chapter06::class-imbalance
+Basic	Better metrics for imbalanced data?	Precision, recall, F1, MCC, ROC AUC	chapter06::class-imbalance
+Basic	Write code to create Pipeline.	from sklearn.pipeline import Pipeline; pipe = Pipeline([('scaler', StandardScaler()), ('clf', LogisticRegression())])	chapter06::code
+Basic	Write code for cross_val_score.	from sklearn.model_selection import cross_val_score; scores = cross_val_score(clf, X, y, cv=10)	chapter06::code
+Basic	Write code to get mean CV score.	scores.mean()	chapter06::code
+Basic	Write code to create GridSearchCV.	from sklearn.model_selection import GridSearchCV; gs = GridSearchCV(clf, param_grid, cv=5)	chapter06::code
+Basic	How to access best params after grid search?	gs.best_params_	chapter06::code
+Basic	How to access best score after grid search?	gs.best_score_	chapter06::code
+Basic	How to access best model after grid search?	gs.best_estimator_	chapter06::code
+Basic	Write code to create confusion matrix.	from sklearn.metrics import confusion_matrix; cm = confusion_matrix(y_true, y_pred)	chapter06::code
+Basic	Write code for classification report.	from sklearn.metrics import classification_report; print(classification_report(y_true, y_pred))	chapter06::code
+Basic	Write code to compute ROC AUC.	from sklearn.metrics import roc_auc_score; roc_auc_score(y_true, y_proba)	chapter06::code
+Basic	Write code to plot ROC curve.	from sklearn.metrics import RocCurveDisplay; RocCurveDisplay.from_estimator(clf, X_test, y_test)	chapter06::code
+Basic	Write code for stratified k-fold.	from sklearn.model_selection import StratifiedKFold; skf = StratifiedKFold(n_splits=10)	chapter06::code
+Basic	Write code for learning curve.	from sklearn.model_selection import learning_curve	chapter06::code
+Basic	Pipeline param_grid format?	'stepname__param': [values]	chapter06::code
+Basic	Write code for RandomizedSearchCV.	from sklearn.model_selection import RandomizedSearchCV; rs = RandomizedSearchCV(clf, param_dist, n_iter=100)	chapter06::code

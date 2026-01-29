@@ -1,45 +1,43 @@
 Type	Front	Back	Tags
-Basic	What is the goal of a GAN?	Synthesize new data with the same distribution as training data	chapter17::gan-framework
-Basic	Who proposed GANs?	Ian Goodfellow and colleagues in 2014	chapter17::gan-framework
-Basic	What are the two components of a GAN?	Generator (G) and Discriminator (D)	chapter17::gan-framework
-Basic	What is the role of the generator?	Transform random noise into fake samples that fool the discriminator	chapter17::generator
-Basic	What is the role of the discriminator?	Classify samples as real or fake	chapter17::discriminator
-Cloze	Generator tries to {{c1::minimize}} discriminator's ability to distinguish		chapter17::gan-framework
-Cloze	Discriminator tries to {{c1::maximize}} its classification ability		chapter17::gan-framework
-Cloze	GAN value function: V(D,G) = E[log D(x)] + E[log(1 - {{c1::D(G(z))}})]		chapter17::loss-functions
-Basic	Why use alternating training in GANs?	Simultaneous optimization is difficult; alternating allows each network to improve	chapter17::training-procedure
-Basic	What loss function is typically used for GANs?	Binary cross-entropy (BCE)	chapter17::loss-functions
-Basic	What is saturation in GAN training?	Vanishing gradients when D confidently rejects obviously fake samples early in training	chapter17::training-stability
-Cloze	To avoid saturation, reformulate min log(1-D(G(z))) as {{c1::max log(D(G(z)))}}		chapter17::training-stability
-Basic	What is an autoencoder?	Neural network that compresses (encoder) and decompresses (decoder) data	chapter17::autoencoders
-Cloze	Encoder: z = {{c1::f(x)}}, Decoder: x_hat = {{c2::g(z)}}		chapter17::autoencoders
-Basic	What is the latent vector z?	Compressed, lower-dimensional representation of the input	chapter17::autoencoders
-Basic	How does VAE differ from standard autoencoder?	VAE encoder outputs distribution parameters (mean, variance), not fixed vector	chapter17::vae
-Basic	Why can't standard autoencoders generate new data?	Deterministic; unknown latent space distribution makes sampling meaningless	chapter17::autoencoders
-Basic	What is mode collapse?	Generator produces limited variety of outputs that consistently fool discriminator	chapter17::mode-collapse
-Basic	What is a vanilla GAN?	Original GAN using fully connected layers for both G and D	chapter17::gan-framework
-Cloze	Vanilla GAN generator output uses {{c1::tanh}} for pixel values in {{c2::[-1, 1]}}		chapter17::gan-architecture
-Basic	Why prefer leaky ReLU over ReLU in GANs?	Provides gradients for negative inputs; standard ReLU has sparse gradients	chapter17::leaky-relu
-Basic	What is DCGAN?	Deep Convolutional GAN using conv layers in D and transposed conv in G	chapter17::dcgan
-Cloze	DCGAN uses {{c1::transposed convolutions}} in generator for upsampling		chapter17::dcgan
-Basic	How does transposed convolution work?	Inserts zeros between input elements, then applies convolution	chapter17::transposed-convolution
-Basic	What is batch normalization?	Normalizes layer inputs using batch statistics, then scales and shifts	chapter17::batch-normalization
-Cloze	BatchNorm: (1) compute batch {{c1::mean/variance}}, (2) {{c2::standardize}}, (3) {{c3::scale and shift}}		chapter17::batch-normalization
-Cloze	With BatchNorm, set {{c1::bias=False}} in preceding layer		chapter17::batch-normalization
-Basic	What is WGAN?	Wasserstein GAN - uses Earth Mover's distance instead of JS divergence	chapter17::wgan
-Basic	Why is Wasserstein distance better than JS divergence?	Provides meaningful gradients even when distributions don't overlap	chapter17::wgan
-Basic	How does WGAN discriminator differ?	Outputs unbounded scores (critic) instead of probabilities	chapter17::wgan
-Cloze	WGAN discriminator loss for real: L_real = {{c1::-mean(D(x))}}		chapter17::wgan
-Cloze	WGAN discriminator loss for fake: L_fake = {{c1::mean(D(G(z)))}}		chapter17::wgan
-Cloze	WGAN generator loss: L_G = {{c1::-mean(D(G(z)))}}		chapter17::wgan
-Basic	How did original WGAN enforce Lipschitz constraint?	Weight clipping to small range like [-0.01, 0.01]	chapter17::wgan
-Basic	What is WGAN-GP?	WGAN with Gradient Penalty instead of weight clipping	chapter17::wgan-gp
-Cloze	WGAN-GP penalty computed on {{c1::interpolated}} samples between real and fake		chapter17::wgan-gp
-Cloze	WGAN-GP total loss: L_real + L_fake + {{c1::lambda * L_gp}}, typically lambda={{c2::10}}		chapter17::wgan-gp
-Basic	What is conditional GAN (cGAN)?	GAN conditioned on additional info like class labels	chapter17::gan-variants
-Basic	What is CycleGAN?	Image-to-image translation with unpaired training data	chapter17::gan-variants
-Basic	What metrics evaluate GAN quality?	Inception Score (IS) and Frechet Inception Distance (FID)	chapter17::evaluation
-Cloze	In WGAN, discriminator often called {{c1::critic}} because it outputs {{c2::scores}}		chapter17::wgan
-Cloze	Typical WGAN: {{c1::5}} critic updates per generator update		chapter17::wgan
-Cloze	KL divergence: {{c1::integral P(x) * log(P(x)/Q(x)) dx}}		chapter17::divergence-measures
-Cloze	JS divergence uses M = {{c1::(P+Q)/2}}		chapter17::divergence-measures
+Basic	What is "generative model"?	Model that can generate new data	chapter17::prerequisites
+Basic	What is "latent space"?	Compressed representation space	chapter17::prerequisites
+Basic	What is "discriminator"?	Network that classifies real vs fake	chapter17::prerequisites
+Basic	What is "generator"?	Network that creates fake samples	chapter17::prerequisites
+Basic	What is a GAN?	Generative Adversarial Network	chapter17::gan-framework
+Basic	Who proposed GANs (2014)?	Ian Goodfellow	chapter17::gan-framework
+Basic	Two GAN components?	Generator and Discriminator	chapter17::gan-framework
+Basic	Generator's goal?	Create fakes that fool discriminator	chapter17::generator
+Basic	Discriminator's goal?	Distinguish real from fake	chapter17::discriminator
+Basic	Generator tries to?	Minimize D's ability to distinguish	chapter17::gan-framework
+Basic	Discriminator tries to?	Maximize classification accuracy	chapter17::gan-framework
+Basic	GAN loss function?	Binary cross-entropy	chapter17::loss-functions
+Basic	Why alternate training?	Simultaneous optimization is hard	chapter17::training-procedure
+Basic	What is saturation in GANs?	Vanishing gradients when D is confident	chapter17::training-stability
+Basic	Solution to saturation?	Maximize log(D(G(z))) instead of min log(1-D(G(z)))	chapter17::training-stability
+Basic	What is an autoencoder?	Encoder + decoder for reconstruction	chapter17::autoencoders
+Cloze	Autoencoder: z = {{c1::encoder(x)}}, x̂ = {{c2::decoder(z)}}		chapter17::autoencoders
+Basic	What is the latent vector z?	Compressed representation	chapter17::autoencoders
+Basic	What is a VAE?	Variational Autoencoder	chapter17::vae
+Basic	VAE vs standard autoencoder?	VAE outputs distribution, not fixed vector	chapter17::vae
+Basic	What is mode collapse?	Generator produces limited variety	chapter17::mode-collapse
+Basic	What is DCGAN?	Deep Convolutional GAN	chapter17::dcgan
+Basic	DCGAN generator uses?	Transposed convolutions	chapter17::dcgan
+Basic	What is transposed convolution?	Insert zeros, then convolve (upsampling)	chapter17::transposed-convolution
+Basic	Why leaky ReLU in GANs?	Gradients for negative inputs	chapter17::leaky-relu
+Basic	What is batch normalization?	Normalize using batch statistics	chapter17::batch-normalization
+Basic	With BatchNorm, set bias to?	False in preceding layer	chapter17::batch-normalization
+Basic	What is WGAN?	Wasserstein GAN	chapter17::wgan
+Basic	WGAN uses what distance?	Earth Mover's (Wasserstein)	chapter17::wgan
+Basic	Why Wasserstein over JS divergence?	Meaningful gradients when distributions don't overlap	chapter17::wgan
+Basic	WGAN discriminator called?	Critic (outputs scores, not probabilities)	chapter17::wgan
+Basic	What is WGAN-GP?	WGAN with gradient penalty	chapter17::wgan-gp
+Cloze	WGAN-GP lambda typically {{c1::10}}		chapter17::wgan-gp
+Basic	What is conditional GAN?	GAN conditioned on labels	chapter17::gan-variants
+Basic	What is CycleGAN?	Image-to-image with unpaired data	chapter17::gan-variants
+Basic	GAN evaluation metrics?	Inception Score, FID	chapter17::evaluation
+Write code for transposed conv.	nn.ConvTranspose2d(in_ch, out_ch, kernel_size, stride, padding)	chapter17::code
+Basic	Write code for LeakyReLU.	nn.LeakyReLU(0.2)	chapter17::code
+Basic	Write code for BatchNorm2d.	nn.BatchNorm2d(num_features)	chapter17::code
+Basic	Write code for Conv without bias.	nn.Conv2d(in_ch, out_ch, kernel_size, bias=False)	chapter17::code
+Basic	Write code for BCEWithLogitsLoss.	nn.BCEWithLogitsLoss()	chapter17::code
+Basic	Write code to sample from normal.	z = torch.randn(batch_size, latent_dim)	chapter17::code

@@ -1,55 +1,61 @@
 Type	Front	Back	Tags
-Basic	What is the goal of clustering?	To find natural groupings where items in the same cluster are more similar than those in different clusters	chapter10::clustering-basics
-Basic	What is category 1 of clustering algorithms?	Prototype-based clustering (k-means)	chapter10::clustering-basics
-Basic	What is category 2 of clustering algorithms?	Hierarchical clustering	chapter10::clustering-basics
-Basic	What is category 3 of clustering algorithms?	Density-based clustering (DBSCAN)	chapter10::clustering-basics
-Basic	Why does k-means tend to find spherical clusters?	K-means minimizes squared distances to centroids, which favors compact spherical shapes	chapter10::kmeans
-Basic	What is prototype-based clustering?	Clustering where each cluster is represented by a prototype (centroid or medoid)	chapter10::clustering-basics
-Basic	What is the difference between a centroid and a medoid?	Centroid is the average of points (continuous); medoid is the most representative actual point (categorical)	chapter10::clustering-basics
-Basic	What is step 1 of k-means?	Randomly pick k centroids from examples as initial cluster centers	chapter10::kmeans
-Basic	What is step 2 of k-means?	Assign each example to the nearest centroid	chapter10::kmeans
-Basic	What is step 3 of k-means?	Move centroids to the center of assigned examples	chapter10::kmeans
-Basic	What is step 4 of k-means?	Repeat until convergence	chapter10::kmeans
-Cloze	K-means measures similarity using {{c1::squared Euclidean distance}}		chapter10::kmeans
-Cloze	The within-cluster SSE is also called {{c1::cluster inertia}}		chapter10::kmeans
-Basic	What is a major limitation of k-means?	You must specify k a priori	chapter10::kmeans
-Basic	Why is feature scaling important for k-means?	Features must be on same scale or larger ranges dominate distance calculations	chapter10::kmeans
-Cloze	In sklearn's KMeans, {{c1::n_init}} specifies how many times to run with different centroids		chapter10::kmeans
-Cloze	In sklearn's KMeans, {{c1::tol}} controls tolerance for convergence		chapter10::kmeans
-Basic	What problem does k-means++ solve?	Smarter initial centroid placement leading to better clustering results	chapter10::kmeans-plus-plus
-Cloze	K-means++ places centroids using probability proportional to {{c1::squared distance from existing centroids}}		chapter10::kmeans-plus-plus
-Cloze	To use k-means++ in sklearn, set init='{{c1::k-means++}}' (the default)		chapter10::kmeans-plus-plus
-Basic	What is the difference between hard and soft clustering?	Hard assigns each example to exactly one cluster; soft assigns membership probabilities	chapter10::fuzzy-clustering
-Basic	What is Fuzzy C-means (FCM)?	Soft clustering where each point has membership probabilities for each cluster	chapter10::fuzzy-clustering
-Cloze	In Fuzzy C-means, larger fuzziness coefficient m leads to {{c1::fuzzier}} clusters		chapter10::fuzzy-clustering
-Basic	What is the elbow method for determining optimal k?	Plot distortion vs k and identify where it begins to increase most rapidly	chapter10::elbow-method
-Cloze	In sklearn, within-cluster SSE is accessible via the {{c1::inertia_}} attribute		chapter10::elbow-method
-Basic	Why does distortion always decrease as k increases?	Examples are closer to centroids with more clusters; k=n gives SSE=0	chapter10::elbow-method
-Cloze	The silhouette coefficient ranges from {{c1::-1 to 1}}		chapter10::silhouette
+Basic	What is a "cluster"?	Group of similar data points	chapter10::prerequisites
+Basic	What is a "centroid"?	Average point of a cluster	chapter10::prerequisites
+Basic	What is a "medoid"?	Most representative actual point	chapter10::prerequisites
+Basic	What is a "dendrogram"?	Tree diagram showing hierarchical clustering	chapter10::prerequisites
+Basic	What is "inertia" in clustering?	Within-cluster sum of squared distances	chapter10::prerequisites
+Basic	What is clustering's goal?	Find natural groupings in data	chapter10::clustering-basics
+Basic	Three categories of clustering?	Prototype-based, hierarchical, density-based	chapter10::clustering-basics
+Basic	What is prototype-based clustering?	Clusters represented by centroids/medoids	chapter10::clustering-basics
+Basic	Centroid vs medoid?	Centroid is average; medoid is actual point	chapter10::clustering-basics
+Basic	What is k-means?	Partition into k clusters using centroids	chapter10::kmeans
+Basic	K-means step 1?	Pick k random centroids	chapter10::kmeans
+Basic	K-means step 2?	Assign points to nearest centroid	chapter10::kmeans
+Basic	K-means step 3?	Move centroids to cluster means	chapter10::kmeans
+Basic	K-means step 4?	Repeat until convergence	chapter10::kmeans
+Cloze	K-means uses {{c1::squared Euclidean}} distance		chapter10::kmeans
+Basic	Why does k-means find spherical clusters?	Minimizes squared distances to centroids	chapter10::kmeans
+Basic	Main k-means limitation?	Must specify k beforehand	chapter10::kmeans
+Basic	Why scale features for k-means?	Larger ranges dominate distances	chapter10::kmeans
+Basic	What is k-means++?	Smart centroid initialization	chapter10::kmeans-plus-plus
+Basic	How does k-means++ initialize?	Probability proportional to squared distance	chapter10::kmeans-plus-plus
+Basic	Hard vs soft clustering?	Hard: one cluster; Soft: membership probabilities	chapter10::fuzzy-clustering
+Basic	What is Fuzzy C-means?	Soft clustering with membership probabilities	chapter10::fuzzy-clustering
+Basic	What is the elbow method?	Plot inertia vs k, find "elbow"	chapter10::elbow-method
+Basic	Why does inertia always decrease with k?	More clusters = closer centroids	chapter10::elbow-method
+Cloze	Silhouette coefficient ranges {{c1::-1 to 1}}		chapter10::silhouette
 Basic	What is cluster cohesion a(i)?	Average distance to same-cluster points	chapter10::silhouette
-Basic	What is cluster separation b(i)?	Average distance to nearest cluster	chapter10::silhouette
-Basic	What does a silhouette coefficient of 0 indicate?	The point is on the boundary between two clusters (a = b)	chapter10::silhouette
-Basic	What does a silhouette coefficient close to 1 indicate?	The point is well-clustered (low a, high b)	chapter10::silhouette
-Basic	What is agglomerative hierarchical clustering?	Bottom-up: start with individual points and merge	chapter10::hierarchical
-Basic	What is divisive hierarchical clustering?	Top-down: start with one cluster and split	chapter10::hierarchical
-Basic	What is single linkage?	Merge clusters based on distance between most similar members	chapter10::hierarchical
-Basic	What is complete linkage?	Merge clusters based on distance between most dissimilar members	chapter10::hierarchical
-Basic	What is average linkage?	Merge based on minimum average distance between all members	chapter10::hierarchical
-Basic	What is Ward's linkage?	Merge clusters that lead to minimum increase of total within-cluster SSE	chapter10::hierarchical
-Basic	What is a dendrogram?	Tree-like visualization of hierarchical clustering showing merge distances	chapter10::hierarchical
-Basic	What are two advantages of hierarchical clustering over k-means?	No need to specify k upfront; results visualized as dendrograms	chapter10::hierarchical
-Cloze	In SciPy, {{c1::pdist}} computes condensed distance matrix		chapter10::hierarchical
-Cloze	In SciPy, {{c1::linkage}} performs hierarchical clustering		chapter10::hierarchical
-Basic	What does DBSCAN stand for?	Density-Based Spatial Clustering of Applications with Noise	chapter10::dbscan
-Cloze	DBSCAN's {{c1::eps}} parameter defines neighborhood radius		chapter10::dbscan
-Cloze	DBSCAN's {{c1::min_samples}} defines minimum points for a core point		chapter10::dbscan
-Basic	What is a core point in DBSCAN?	A point with >= MinPts neighbors within eps radius	chapter10::dbscan
-Basic	What is a border point in DBSCAN?	A point with fewer than MinPts neighbors but within eps of a core point	chapter10::dbscan
-Basic	What is a noise point in DBSCAN?	A point that is neither core nor border - not assigned to any cluster	chapter10::dbscan
-Basic	What is a key advantage of DBSCAN over k-means?	Can find clusters of arbitrary shapes and identify outliers	chapter10::dbscan
-Basic	When would you choose k-means over DBSCAN?	When clusters are spherical, you know k, and need computational efficiency	chapter10::algorithm-comparison
-Basic	When would you choose DBSCAN over k-means?	When clusters have arbitrary shapes, you don't know k, or data has outliers	chapter10::algorithm-comparison
-Basic	What is the curse of dimensionality for clustering?	As dimensions increase, distance metrics become less meaningful	chapter10::algorithm-comparison
-Basic	How can you address the curse of dimensionality before clustering?	Apply dimensionality reduction like PCA or t-SNE	chapter10::algorithm-comparison
-Cloze	In sklearn, use {{c1::AgglomerativeClustering}} for hierarchical clustering		chapter10::hierarchical
-Basic	What are intrinsic metrics in clustering evaluation?	Metrics like SSE and silhouette that evaluate quality without ground-truth labels	chapter10::evaluation
+Basic	What is cluster separation b(i)?	Average distance to nearest other cluster	chapter10::silhouette
+Basic	Silhouette = 0 means?	Point on boundary between clusters	chapter10::silhouette
+Basic	Silhouette near 1 means?	Well-clustered point	chapter10::silhouette
+Basic	What is agglomerative clustering?	Bottom-up: merge points into clusters	chapter10::hierarchical
+Basic	What is divisive clustering?	Top-down: split clusters	chapter10::hierarchical
+Basic	What is single linkage?	Merge by closest pair distance	chapter10::hierarchical
+Basic	What is complete linkage?	Merge by farthest pair distance	chapter10::hierarchical
+Basic	What is average linkage?	Merge by average pairwise distance	chapter10::hierarchical
+Basic	What is Ward's linkage?	Merge to minimize SSE increase	chapter10::hierarchical
+Basic	Two advantages of hierarchical over k-means?	No k needed; dendrogram visualization	chapter10::hierarchical
+Basic	What is DBSCAN?	Density-Based Spatial Clustering	chapter10::dbscan
+Cloze	DBSCAN eps parameter: {{c1::neighborhood radius}}		chapter10::dbscan
+Cloze	DBSCAN min_samples: {{c1::minimum points for core point}}		chapter10::dbscan
+Basic	What is a core point in DBSCAN?	Point with ≥ min_samples neighbors within eps	chapter10::dbscan
+Basic	What is a border point?	Near core point but fewer neighbors	chapter10::dbscan
+Basic	What is a noise point?	Neither core nor border	chapter10::dbscan
+Basic	DBSCAN advantage over k-means?	Arbitrary shapes, finds outliers	chapter10::dbscan
+Basic	When choose k-means?	Spherical clusters, known k, need speed	chapter10::algorithm-comparison
+Basic	When choose DBSCAN?	Arbitrary shapes, unknown k, has outliers	chapter10::algorithm-comparison
+Basic	Curse of dimensionality in clustering?	Distances become meaningless in high dims	chapter10::algorithm-comparison
+Basic	Solution for high-dim clustering?	Dimensionality reduction first (PCA, t-SNE)	chapter10::algorithm-comparison
+Basic	What are intrinsic clustering metrics?	Evaluation without ground truth (SSE, silhouette)	chapter10::evaluation
+Basic	Write code to create KMeans.	from sklearn.cluster import KMeans; km = KMeans(n_clusters=3)	chapter10::code
+Basic	Write code to fit and predict clusters.	labels = km.fit_predict(X)	chapter10::code
+Basic	How to access cluster centers?	km.cluster_centers_	chapter10::code
+Basic	How to access inertia?	km.inertia_	chapter10::code
+Basic	Write code for k-means++ init.	KMeans(n_clusters=3, init='k-means++')  # default	chapter10::code
+Basic	Write code to compute silhouette score.	from sklearn.metrics import silhouette_score; silhouette_score(X, labels)	chapter10::code
+Basic	Write code for AgglomerativeClustering.	from sklearn.cluster import AgglomerativeClustering; ac = AgglomerativeClustering(n_clusters=3, linkage='ward')	chapter10::code
+Basic	Write code for DBSCAN.	from sklearn.cluster import DBSCAN; db = DBSCAN(eps=0.5, min_samples=5)	chapter10::code
+Basic	How to identify noise points in DBSCAN?	Labels equal to -1	chapter10::code
+Basic	Write code for scipy hierarchical clustering.	from scipy.cluster.hierarchy import linkage, dendrogram; Z = linkage(X, method='ward')	chapter10::code
+Basic	Write code to plot dendrogram.	dendrogram(Z)	chapter10::code
+Basic	Write code for scipy distance matrix.	from scipy.spatial.distance import pdist; dist = pdist(X, metric='euclidean')	chapter10::code

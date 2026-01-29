@@ -1,66 +1,69 @@
 Type	Front	Back	Tags
-Basic	What is the purpose of data preprocessing in machine learning?	To ensure data quality and extract useful information before feeding it to ML algorithms	chapter04::preprocessing-fundamentals
-Basic	What is topic 1 of data preprocessing?	Removing and imputing missing values from the dataset	chapter04::preprocessing-fundamentals
-Basic	What is topic 2 of data preprocessing?	Getting categorical data into shape for ML algorithms	chapter04::preprocessing-fundamentals
-Basic	What is topic 3 of data preprocessing?	Selecting relevant features for model construction	chapter04::preprocessing-fundamentals
-Cloze	Missing values are typically represented as blank spaces, {{c1::NaN}}, or {{c2::NULL}}		chapter04::missing-data
-Basic	How can you count missing values per column in pandas?	Use df.isnull().sum()	chapter04::missing-data
-Cloze	To drop rows with missing values in pandas, use {{c1::df.dropna(axis=0)}}		chapter04::missing-data
-Cloze	To drop columns with missing values in pandas, use {{c1::df.dropna(axis=1)}}		chapter04::missing-data
-Basic	What is the disadvantage of removing rows with missing data?	You may lose too many samples, making reliable analysis impossible	chapter04::missing-data
-Basic	What is the disadvantage of removing columns with missing data?	You may lose valuable feature information needed to discriminate between classes	chapter04::missing-data
-Cloze	{{c1::Mean imputation}} replaces missing values with the {{c2::mean}} value of the feature column		chapter04::missing-data
-Cloze	In scikit-learn, use {{c1::SimpleImputer}} from sklearn.impute to handle missing values		chapter04::missing-data
-Basic	When should you use the 'most_frequent' strategy for imputation?	For imputing categorical feature values	chapter04::missing-data
-Cloze	The scikit-learn transformer API has two essential methods: {{c1::fit}} and {{c2::transform}}		chapter04::sklearn-api
-Basic	What is the difference between ordinal and nominal categorical features?	Ordinal features can be sorted/ordered; nominal features have no inherent order	chapter04::categorical-encoding
-Basic	Give an example of ordinal categorical features.	T-shirt sizes: XL > L > M	chapter04::categorical-encoding
-Basic	Give an example of nominal categorical features.	Colors: red, green, blue (no inherent order)	chapter04::categorical-encoding
-Basic	How do you map ordinal features to integers in pandas?	Create a mapping dictionary and use df['column'].map(mapping)	chapter04::categorical-encoding
-Cloze	{{c1::LabelEncoder}} from sklearn.preprocessing can convert class labels from strings to integers		chapter04::categorical-encoding
-Basic	Why is using LabelEncoder on nominal features problematic?	Models will assume numerical ordering which is incorrect for nominal features	chapter04::categorical-encoding
-Cloze	{{c1::One-hot encoding}} creates a new binary dummy feature for each unique value in a nominal feature		chapter04::categorical-encoding
-Cloze	In scikit-learn, use {{c1::OneHotEncoder}} to perform one-hot encoding		chapter04::categorical-encoding
-Cloze	The pandas function {{c1::get_dummies()}} creates one-hot encoded dummy features from string columns		chapter04::categorical-encoding
-Basic	What problem does one-hot encoding introduce?	Multicollinearity	chapter04::categorical-encoding
-Basic	How can you address multicollinearity from one-hot encoding?	Drop one feature column (use drop_first=True)	chapter04::categorical-encoding
-Cloze	{{c1::ColumnTransformer}} from sklearn.compose allows selective transformation of specific columns		chapter04::categorical-encoding
-Basic	What is binary encoding for categorical data?	An alternative to one-hot encoding that produces log2(K) features instead of K-1	chapter04::categorical-encoding
-Cloze	Use sklearn.model_selection.{{c1::train_test_split}} to randomly partition data		chapter04::data-partitioning
-Basic	What does the stratify parameter do in train_test_split?	Ensures both datasets have the same class proportions as the original	chapter04::data-partitioning
-Basic	What split ratios are common for small/medium datasets?	60:40, 70:30, or 80:20	chapter04::data-partitioning
-Basic	What split ratios are common for large datasets (>100,000)?	90:10 or 99:1	chapter04::data-partitioning
-Basic	Why is feature scaling important for most ML algorithms?	Most algorithms perform better when features are on the same scale	chapter04::feature-scaling
-Basic	Which ML algorithms are scale-invariant?	Decision trees and random forests	chapter04::feature-scaling
-Cloze	Min-max normalization formula: x_norm = {{c1::(x - x_min) / (x_max - x_min)}}		chapter04::feature-scaling
-Cloze	Standardization formula: x_std = {{c1::(x - mean) / standard_deviation}}		chapter04::feature-scaling
-Basic	When should you use standardization?	For algorithms sensitive to outliers or assuming normal distribution	chapter04::feature-scaling
-Basic	When should you use min-max normalization?	When you need bounded values [0,1] and outliers aren't a concern	chapter04::feature-scaling
-Cloze	{{c1::MinMaxScaler}} performs min-max normalization		chapter04::feature-scaling
-Cloze	{{c1::StandardScaler}} performs standardization		chapter04::feature-scaling
-Basic	Why should you fit scalers only on training data?	To prevent data leakage - test data should be transformed using training parameters only	chapter04::feature-scaling
-Cloze	{{c1::RobustScaler}} is recommended for datasets with many outliers		chapter04::feature-scaling
-Basic	What is solution 1 to reduce overfitting?	Collect more training data	chapter04::feature-selection
-Basic	What is solution 2 to reduce overfitting?	Introduce regularization penalty	chapter04::feature-selection
-Basic	What is solution 3 to reduce overfitting?	Choose simpler model with fewer parameters	chapter04::feature-selection
-Basic	What is solution 4 to reduce overfitting?	Reduce dimensionality of data	chapter04::feature-selection
-Cloze	L2 regularization penalizes the {{c1::squared sum}} of weights: ||w||_2^2 = sum(w_j^2)		chapter04::regularization
-Cloze	L1 regularization penalizes the {{c1::sum of absolute values}} of weights: ||w||_1 = sum(|w_j|)		chapter04::regularization
-Basic	Why does L1 regularization produce sparse feature vectors?	L1's diamond-shaped constraint boundary has corners on axes, making zero weights more likely	chapter04::regularization
-Basic	How can L1 regularization be used for feature selection?	It drives many feature weights to exactly zero, selecting only the most important features	chapter04::regularization
-Cloze	In sklearn LogisticRegression, set {{c1::penalty='l1'}} and {{c2::solver='liblinear'}} for L1 regularization		chapter04::regularization
-Cloze	The regularization parameter C in sklearn is the {{c1::inverse}} of regularization strength lambda		chapter04::regularization
-Basic	What is feature selection?	Selecting a subset of original features	chapter04::feature-selection
-Basic	What is feature extraction?	Deriving new features from the original feature set	chapter04::feature-selection
-Cloze	{{c1::Sequential Backward Selection (SBS)}} removes features one at a time, eliminating the one causing least performance loss		chapter04::feature-selection
-Basic	What is the motivation behind feature selection algorithms?	To improve computational efficiency and reduce generalization error by removing irrelevant features	chapter04::feature-selection
-Basic	What are greedy search algorithms?	Algorithms that make locally optimal choices at each stage, yielding potentially suboptimal but efficient solutions	chapter04::feature-selection
-Cloze	Random forests measure feature importance as the {{c1::averaged impurity decrease}} from all decision trees		chapter04::feature-selection
-Basic	How do you access feature importance in a fitted RandomForestClassifier?	Use the feature_importances_ attribute	chapter04::feature-selection
-Basic	What is a gotcha with random forest feature importance for correlated features?	One correlated feature may rank very high while the other's importance is underestimated	chapter04::feature-selection
-Cloze	{{c1::SelectFromModel}} in sklearn.feature_selection selects features based on importance threshold		chapter04::feature-selection
-Basic	Why fit SimpleImputer on training data only before transforming test data?	To prevent data leakage - imputation parameters should be calculated from training data only	chapter04::missing-data
-Cloze	To access the NumPy array of a pandas DataFrame, use the {{c1::.values}} attribute		chapter04::preprocessing-fundamentals
-Basic	What does dropna(thresh=4) do in pandas?	Drops rows that have fewer than 4 non-NaN values	chapter04::missing-data
-Cloze	{{c1::KNNImputer}} in sklearn uses k-nearest neighbors to impute missing features		chapter04::missing-data
-Basic	How do you reverse an encoding mapping dictionary in Python?	Use dictionary comprehension: inv_mapping = {v: k for k, v in mapping.items()}	chapter04::categorical-encoding
+Basic	What is data preprocessing?	Preparing raw data for ML algorithms	chapter04::preprocessing-fundamentals
+Basic	What is "missing data"?	Absent values in the dataset	chapter04::prerequisites
+Basic	What is "imputation"?	Filling in missing values	chapter04::prerequisites
+Basic	What is a "categorical feature"?	Non-numeric data like colors or labels	chapter04::prerequisites
+Basic	What is "multicollinearity"?	High correlation between features	chapter04::prerequisites
+Basic	What is "data leakage"?	Test info accidentally used in training	chapter04::prerequisites
+Basic	What is "sparsity" (in ML)?	Most values being zero	chapter04::prerequisites
+Basic	Three main preprocessing tasks?	Handle missing data, encode categories, select features	chapter04::preprocessing-fundamentals
+Cloze	Missing values are typically {{c1::NaN}} or {{c2::NULL}}		chapter04::missing-data
+Basic	How to count missing values per column?	df.isnull().sum()	chapter04::missing-data
+Basic	What does dropna(axis=0) do?	Drops rows with missing values	chapter04::missing-data
+Basic	What does dropna(axis=1) do?	Drops columns with missing values	chapter04::missing-data
+Basic	Downside of dropping rows?	May lose too many samples	chapter04::missing-data
+Basic	Downside of dropping columns?	May lose valuable features	chapter04::missing-data
+Basic	What is mean imputation?	Replace missing with column mean	chapter04::missing-data
+Basic	When use 'most_frequent' imputation?	For categorical features	chapter04::missing-data
+Basic	What is ordinal data?	Categories with inherent order	chapter04::categorical-encoding
+Basic	Example of ordinal data?	T-shirt sizes: XL > L > M	chapter04::categorical-encoding
+Basic	What is nominal data?	Categories without order	chapter04::categorical-encoding
+Basic	Example of nominal data?	Colors: red, green, blue	chapter04::categorical-encoding
+Basic	How to encode ordinal features?	Map to integers preserving order	chapter04::categorical-encoding
+Basic	Why not use integers for nominal features?	Model assumes incorrect ordering	chapter04::categorical-encoding
+Basic	What is one-hot encoding?	Binary column per category value	chapter04::categorical-encoding
+Basic	What problem does one-hot encoding cause?	Multicollinearity	chapter04::categorical-encoding
+Basic	How to fix one-hot multicollinearity?	Drop one column (drop_first=True)	chapter04::categorical-encoding
+Basic	What is binary encoding?	Log2(K) features instead of K-1	chapter04::categorical-encoding
+Basic	What does stratify do in train_test_split?	Preserves class proportions	chapter04::data-partitioning
+Basic	Common split ratio for small datasets?	70:30 or 80:20	chapter04::data-partitioning
+Basic	Common split ratio for large datasets?	90:10 or 99:1	chapter04::data-partitioning
+Basic	Why is feature scaling important?	Most algorithms need similar scales	chapter04::feature-scaling
+Basic	Which algorithms don't need scaling?	Decision trees and random forests	chapter04::feature-scaling
+Cloze	Min-max normalization: {{c1::(x - x_min) / (x_max - x_min)}}		chapter04::feature-scaling
+Cloze	Standardization: {{c1::(x - mean) / std}}		chapter04::feature-scaling
+Basic	Min-max scaling output range?	[0, 1]	chapter04::feature-scaling
+Basic	Standardization output properties?	Mean=0, std=1	chapter04::feature-scaling
+Basic	When prefer standardization?	Data has outliers	chapter04::feature-scaling
+Basic	When prefer min-max?	Need bounded values, no outliers	chapter04::feature-scaling
+Basic	Why fit scaler only on training data?	Prevent data leakage	chapter04::feature-scaling
+Basic	What scaler handles outliers best?	RobustScaler	chapter04::feature-scaling
+Basic	Four solutions to overfitting?	More data, regularization, simpler model, fewer features	chapter04::overfitting
+Basic	What is L1 regularization?	Penalty on sum of absolute weights	chapter04::regularization
+Basic	What is L2 regularization?	Penalty on sum of squared weights	chapter04::regularization
+Basic	What does L1 regularization produce?	Sparse weights (many zeros)	chapter04::regularization
+Basic	Why does L1 create sparsity?	Diamond constraint has corners on axes	chapter04::regularization
+Basic	How is L1 used for feature selection?	Zero weights indicate unimportant features	chapter04::regularization
+Basic	What is C in sklearn regularization?	Inverse of regularization strength	chapter04::regularization
+Basic	What is feature selection?	Choosing subset of original features	chapter04::feature-selection
+Basic	What is feature extraction?	Creating new features from originals	chapter04::feature-selection
+Basic	What is SBS?	Sequential Backward Selection	chapter04::feature-selection
+Basic	How does SBS work?	Remove features one at a time	chapter04::feature-selection
+Basic	What is a greedy algorithm?	Makes locally optimal choices	chapter04::feature-selection
+Basic	How do random forests measure importance?	Average impurity decrease	chapter04::feature-selection
+Basic	RF importance issue with correlated features?	One ranks high, other underestimated	chapter04::feature-selection
+Basic	Write code to check missing values.	df.isnull().sum()	chapter04::code
+Basic	Write code to drop rows with NaN.	df.dropna(axis=0)	chapter04::code
+Basic	Write code to create SimpleImputer with mean.	from sklearn.impute import SimpleImputer; imp = SimpleImputer(strategy='mean')	chapter04::code
+Basic	Write code to fit and transform with imputer.	X_imputed = imp.fit_transform(X_train)	chapter04::code
+Basic	Write code to one-hot encode with pandas.	pd.get_dummies(df, drop_first=True)	chapter04::code
+Basic	Write code to create OneHotEncoder.	from sklearn.preprocessing import OneHotEncoder; ohe = OneHotEncoder()	chapter04::code
+Basic	Write code to create LabelEncoder.	from sklearn.preprocessing import LabelEncoder; le = LabelEncoder()	chapter04::code
+Basic	Write code to encode labels.	y_encoded = le.fit_transform(y)	chapter04::code
+Basic	Write code to create MinMaxScaler.	from sklearn.preprocessing import MinMaxScaler; mms = MinMaxScaler()	chapter04::code
+Basic	Write code to create StandardScaler.	from sklearn.preprocessing import StandardScaler; sc = StandardScaler()	chapter04::code
+Basic	Write code for L1 logistic regression.	LogisticRegression(penalty='l1', solver='liblinear')	chapter04::code
+Basic	Write code to get feature importances.	rf.feature_importances_	chapter04::code
+Basic	Write code to create ColumnTransformer.	from sklearn.compose import ColumnTransformer	chapter04::code
+Basic	Write code to create SelectFromModel.	from sklearn.feature_selection import SelectFromModel	chapter04::code
+Basic	Write code to create KNNImputer.	from sklearn.impute import KNNImputer; knn_imp = KNNImputer(n_neighbors=5)	chapter04::code

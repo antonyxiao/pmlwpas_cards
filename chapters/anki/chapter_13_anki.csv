@@ -1,53 +1,44 @@
 Type	Front	Back	Tags
-Basic	What type of graph does PyTorch use?	A directed acyclic graph (DAG) relating tensors from input to output	chapter13::computation-graphs
-Cloze	Enable gradient computation with {{c1::requires_grad=True}}		chapter13::autograd
-Cloze	Only {{c1::floating point}} and {{c2::complex}} dtype can require gradients		chapter13::autograd
-Cloze	{{c1::method_()}} with trailing underscore is an in-place method		chapter13::pytorch-conventions
-Cloze	For Xavier/Glorot initialization, use {{c1::nn.init.xavier_normal_(w)}}		chapter13::initialization
-Basic	What is Xavier (Glorot) initialization for?	Balancing variance of gradients across layers to prevent imbalanced learning	chapter13::initialization
-Cloze	PyTorch autograd implements the {{c1::chain rule}} for gradients		chapter13::autograd
-Cloze	Compute gradients with {{c1::loss.backward()}} and access via {{c2::tensor.grad}}		chapter13::autograd
-Basic	What is forward vs reverse accumulation in autodiff?	Forward propagates from inputs; reverse (PyTorch) from outputs, more efficient for backprop	chapter13::autograd
-Cloze	{{c1::nn.Sequential}} connects layers cascaded, output becomes next input		chapter13::nn-sequential
-Cloze	L2 regularization uses {{c1::weight_decay}} parameter in optimizers		chapter13::regularization
-Basic	How do you implement L1 regularization?	Add L1 penalty to loss: l1_weight * model[layer].weight.abs().sum()	chapter13::regularization
-Cloze	Binary classification uses {{c1::nn.BCELoss()}}		chapter13::loss-functions
-Cloze	Multiclass classification uses {{c1::nn.CrossEntropyLoss()}}		chapter13::loss-functions
-Cloze	Regression uses {{c1::nn.MSELoss()}}		chapter13::loss-functions
-Cloze	SGD optimizer: {{c1::torch.optim.SGD(model.parameters(), lr=0.001)}}		chapter13::optimizers
-Cloze	Adam optimizer: {{c1::torch.optim.Adam(model.parameters(), lr=0.001)}}		chapter13::optimizers
-Basic	Why does Adam often converge faster than SGD?	Adapts learning rates per-parameter using running averages of gradients	chapter13::optimizers
-Basic	What does the XOR problem demonstrate?	Need for hidden layers to capture nonlinear decision boundaries	chapter13::model-capacity
-Basic	What is model capacity?	How readily a model can approximate complex functions	chapter13::model-capacity
-Basic	What does the universal approximation theorem state?	One hidden layer with enough units can approximate arbitrary continuous functions	chapter13::model-capacity
-Basic	What is the tradeoff between deeper vs wider networks?	Deeper needs fewer parameters but harder to train due to gradient problems	chapter13::model-capacity
-Cloze	Custom networks inherit from {{c1::nn.Module}} and implement {{c2::__init__}} and {{c3::forward}}		chapter13::custom-layers
-Cloze	Store layers in {{c1::nn.ModuleList}} for proper parameter registration		chapter13::custom-layers
-Cloze	Wrap tensors as trainable parameters with {{c1::nn.Parameter(tensor)}}		chapter13::custom-layers
-Basic	What is the standard PyTorch training loop sequence?	Forward pass, compute loss, loss.backward(), optimizer.step(), optimizer.zero_grad()	chapter13::training-loop
-Cloze	{{c1::optimizer.zero_grad()}} clears accumulated gradients		chapter13::training-loop
-Cloze	{{c1::optimizer.step()}} updates parameters using gradients		chapter13::training-loop
-Cloze	Get scalar from loss tensor with {{c1::loss.item()}}		chapter13::training-loop
-Cloze	{{c1::torch.bucketize(values, boundaries)}} assigns continuous values to discrete buckets		chapter13::data-preprocessing
-Cloze	One-hot encode with {{c1::torch.nn.functional.one_hot(tensor)}}		chapter13::data-preprocessing
-Basic	What are two ways to handle categorical features?	One-hot encoding or nn.Embedding for trainable dense vectors	chapter13::data-preprocessing
-Cloze	{{c1::nn.Embedding}} maps indices to trainable dense vectors		chapter13::data-preprocessing
-Cloze	{{c1::nn.Flatten()}} flattens tensors except batch dimension		chapter13::nn-layers
-Cloze	{{c1::nn.Linear(in_features, out_features)}} creates fully connected layer		chapter13::nn-layers
-Cloze	{{c1::nn.ReLU()}} applies max(0, x) activation		chapter13::activation-functions
-Cloze	{{c1::nn.Sigmoid()}} outputs values between 0 and 1		chapter13::activation-functions
-Basic	When use Sigmoid vs Softmax output?	Sigmoid for binary/multi-label; Softmax for mutually exclusive multiclass	chapter13::activation-functions
-Cloze	Disable gradients with {{c1::with torch.no_grad():}}		chapter13::inference
-Cloze	{{c1::torch.argmax(tensor, dim=1)}} returns predicted class indices		chapter13::inference
-Cloze	{{c1::TensorDataset(x_train, y_train)}} creates dataset from tensors		chapter13::data-loading
-Cloze	{{c1::DataLoader(dataset, batch_size, shuffle=True)}} creates batched iterable		chapter13::data-loading
-Basic	What does shuffle=True in DataLoader do?	Randomizes sample order each epoch to improve generalization	chapter13::data-loading
-Basic	What is PyTorch Lightning?	Library reducing boilerplate while providing multi-GPU support and logging	chapter13::pytorch-lightning
-Cloze	Lightning models inherit from {{c1::pl.LightningModule}}		chapter13::pytorch-lightning
-Cloze	{{c1::training_step}} defines forward pass and loss for a batch		chapter13::pytorch-lightning
-Cloze	{{c1::configure_optimizers}} specifies which optimizer to use		chapter13::pytorch-lightning
-Cloze	{{c1::pl.Trainer}} handles training loop, gradients, and logging		chapter13::pytorch-lightning
-Cloze	Train Lightning model: {{c1::trainer.fit(model=model, datamodule=data_module)}}		chapter13::pytorch-lightning
-Cloze	Load Lightning checkpoint: {{c1::ModelClass.load_from_checkpoint("path.ckpt")}}		chapter13::pytorch-lightning
-Cloze	Standardization formula: {{c1::(x - mean) / std}}		chapter13::data-preprocessing
-Basic	What are adversarial examples?	Small perturbations causing misclassification, created using input gradients	chapter13::advanced-topics
+Basic	What is a "DAG"?	Directed Acyclic Graph	chapter13::prerequisites
+Basic	What is "Xavier initialization"?	Weight init balancing gradient variance	chapter13::prerequisites
+Basic	What is "embedding"?	Dense vector representation	chapter13::prerequisites
+Basic	PyTorch graph type?	Directed acyclic graph (DAG)	chapter13::computation-graphs
+Basic	Which dtypes can require gradients?	Floating point and complex	chapter13::autograd
+Basic	What does trailing underscore mean?	In-place operation (e.g., method_())	chapter13::pytorch-conventions
+Basic	What is Xavier/Glorot init for?	Balance gradient variance across layers	chapter13::initialization
+Basic	PyTorch autograd implements?	Chain rule for gradients	chapter13::autograd
+Basic	How to access gradients?	tensor.grad after backward()	chapter13::autograd
+Basic	Forward vs reverse autodiff?	Reverse (PyTorch) is more efficient for backprop	chapter13::autograd
+Basic	What is nn.Sequential?	Chain layers where output feeds next input	chapter13::nn-sequential
+Basic	How to implement L2 regularization?	weight_decay parameter in optimizer	chapter13::regularization
+Basic	How to implement L1 regularization?	Manually add to loss: weight.abs().sum()	chapter13::regularization
+Basic	Loss for binary classification?	nn.BCELoss()	chapter13::loss-functions
+Basic	Loss for multiclass?	nn.CrossEntropyLoss()	chapter13::loss-functions
+Basic	Loss for regression?	nn.MSELoss()	chapter13::loss-functions
+Basic	Why does Adam often beat SGD?	Adapts learning rate per parameter	chapter13::optimizers
+Basic	What does XOR problem show?	Need hidden layers for nonlinear boundaries	chapter13::model-capacity
+Basic	What is model capacity?	Ability to approximate complex functions	chapter13::model-capacity
+Basic	Universal approximation theorem says?	One hidden layer can approximate any function	chapter13::model-capacity
+Basic	Deeper vs wider networks tradeoff?	Deeper needs fewer params but harder to train	chapter13::model-capacity
+Basic	Store layers for parameter registration in?	nn.ModuleList	chapter13::custom-layers
+Basic	Make tensor trainable with?	nn.Parameter(tensor)	chapter13::custom-layers
+Basic	Standard training loop order?	forward → loss → backward → step → zero_grad	chapter13::training-loop
+Basic	Get scalar from loss tensor?	loss.item()	chapter13::training-loop
+Basic	Two ways to handle categorical features?	One-hot encoding or nn.Embedding	chapter13::data-preprocessing
+Basic	What is nn.Embedding?	Maps indices to trainable dense vectors	chapter13::data-preprocessing
+Basic	What is nn.Flatten?	Flattens except batch dimension	chapter13::nn-layers
+Basic	Sigmoid vs Softmax output?	Sigmoid for binary; Softmax for multiclass	chapter13::activation-functions
+Basic	What is PyTorch Lightning?	Library reducing boilerplate code	chapter13::pytorch-lightning
+Basic	Lightning models inherit from?	pl.LightningModule	chapter13::pytorch-lightning
+Basic	What are adversarial examples?	Small perturbations causing misclassification	chapter13::advanced-topics
+Basic	Write code for Xavier init.	nn.init.xavier_normal_(layer.weight)	chapter13::code
+Basic	Write code to create Sequential model.	nn.Sequential(nn.Linear(10, 5), nn.ReLU(), nn.Linear(5, 1))	chapter13::code
+Basic	Write code for L2 regularization.	optim.Adam(params, lr=0.001, weight_decay=0.01)	chapter13::code
+Basic	Write code for BCELoss.	nn.BCELoss()	chapter13::code
+Basic	Write code for one-hot encoding.	torch.nn.functional.one_hot(tensor, num_classes)	chapter13::code
+Basic	Write code to create Embedding.	nn.Embedding(num_embeddings, embedding_dim)	chapter13::code
+Basic	Write code for ModuleList.	nn.ModuleList([nn.Linear(10, 5), nn.Linear(5, 1)])	chapter13::code
+Basic	Write code to get loss as float.	loss.item()	chapter13::code
+Basic	Write code for ReLU layer.	nn.ReLU()	chapter13::code
+Basic	Write code for Sigmoid layer.	nn.Sigmoid()	chapter13::code
+Basic	Write code for Flatten layer.	nn.Flatten()	chapter13::code

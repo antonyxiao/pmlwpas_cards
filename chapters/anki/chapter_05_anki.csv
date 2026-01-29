@@ -1,57 +1,67 @@
 Type	Front	Back	Tags
-Basic	What is the difference between feature selection and feature extraction?	Feature selection maintains original features; feature extraction transforms/projects data onto a new feature space	chapter05::dimensionality-reduction
-Basic	What is the main goal of PCA?	To find directions of maximum variance in high-dimensional data and project onto a lower-dimensional subspace	chapter05::pca
-Basic	What is the key difference between PCA and LDA?	PCA is unsupervised and maximizes variance; LDA is supervised and maximizes class separability	chapter05::pca-vs-lda
-Cloze	In PCA, the orthogonal axes of the new subspace are called {{c1::principal components}}		chapter05::pca
-Cloze	The PCA transformation can be written as {{c1::z = xW}}		chapter05::pca
-Basic	What is step 1 of PCA?	Standardize the d-dimensional dataset	chapter05::pca-steps
-Basic	What is step 2 of PCA?	Construct the covariance matrix	chapter05::pca-steps
-Basic	What is step 3 of PCA?	Decompose the covariance matrix into eigenvectors and eigenvalues	chapter05::pca-steps
-Basic	What is step 4 of PCA?	Sort eigenvalues by decreasing order to rank eigenvectors	chapter05::pca-steps
-Basic	What is step 5 of PCA?	Select k eigenvectors corresponding to k largest eigenvalues	chapter05::pca-steps
-Basic	What is step 6 of PCA?	Construct projection matrix W from top k eigenvectors	chapter05::pca-steps
-Basic	What is step 7 of PCA?	Transform dataset X using projection matrix W	chapter05::pca-steps
-Basic	Why must features be standardized before applying PCA?	PCA is sensitive to data scaling; standardization ensures all features have equal importance	chapter05::pca
-Cloze	In PCA, eigenvalues represent the {{c1::amount of variance}} explained by each principal component		chapter05::eigenvalues
-Cloze	PCA projects data onto {{c1::eigenvectors}} of the covariance matrix		chapter05::pca
-Basic	What is eigendecomposition in PCA context?	Factorizing the covariance matrix into eigenvalues and eigenvectors	chapter05::eigenvalues
-Cloze	The covariance matrix is a {{c1::symmetric}} matrix		chapter05::covariance-matrix
-Cloze	When decomposing a symmetric matrix, eigenvalues are {{c1::real}} and eigenvectors are {{c2::orthogonal}}		chapter05::eigenvalues
-Cloze	The eigenvector with the {{c1::highest eigenvalue}} corresponds to the direction of {{c2::maximum variance}}		chapter05::eigenvalues
-Basic	What does a positive covariance between two features indicate?	The features increase or decrease together (vary in same direction)	chapter05::covariance-matrix
-Basic	What does a negative covariance between two features indicate?	The features vary in opposite directions	chapter05::covariance-matrix
-Cloze	The variance explained ratio of eigenvalue lambda_j is: {{c1::lambda_j / sum(all eigenvalues)}}		chapter05::variance-explained
-Basic	Why are principal components mutually orthogonal?	This is a mathematical property of eigendecomposition of symmetric matrices	chapter05::pca
-Cloze	In NumPy, {{c1::np.linalg.eigh()}} is more numerically stable for symmetric matrices than np.linalg.eig()		chapter05::pca-implementation
-Basic	What are factor loadings in PCA?	Correlations between original features and principal components, computed by scaling eigenvectors by sqrt(eigenvalues)	chapter05::pca
-Basic	What is the goal of LDA?	To find the feature subspace that optimizes class separability	chapter05::lda
-Cloze	LDA is a {{c1::supervised}} dimensionality reduction technique		chapter05::pca-vs-lda
-Basic	What is step 1 of LDA?	Standardize the d-dimensional dataset	chapter05::lda-steps
-Basic	What is step 2 of LDA?	For each class, compute the d-dimensional mean vector	chapter05::lda-steps
-Basic	What is step 3 of LDA?	Construct between-class scatter matrix S_B and within-class scatter matrix S_W	chapter05::lda-steps
-Basic	What is step 4 of LDA?	Compute eigenvectors and eigenvalues of matrix S_W^(-1) * S_B	chapter05::lda-steps
-Cloze	In LDA, the maximum number of linear discriminants is {{c1::c - 1}} where c is the number of classes		chapter05::lda
-Basic	What is assumption 1 of LDA?	Data is normally distributed	chapter05::lda
-Basic	What is assumption 2 of LDA?	Classes have identical covariance matrices	chapter05::lda
-Basic	What is assumption 3 of LDA?	Training examples are statistically independent	chapter05::lda
-Cloze	The within-class scatter matrix S_W is calculated by {{c1::summing individual scatter matrices of each class}}		chapter05::lda
-Cloze	The between-class scatter matrix S_B measures the {{c1::scatter of class means around the overall mean}}		chapter05::lda
-Basic	When might PCA outperform LDA for classification?	When each class has only a small number of training examples	chapter05::pca-vs-lda
-Cloze	In scikit-learn, PCA is in {{c1::sklearn.decomposition.PCA}}		chapter05::implementation
-Cloze	In scikit-learn, LDA is in {{c1::sklearn.discriminant_analysis.LinearDiscriminantAnalysis}}		chapter05::implementation
-Basic	What does the explained_variance_ratio_ attribute in sklearn's PCA contain?	The proportion of variance explained by each principal component	chapter05::pca
-Basic	Why might linear dimensionality reduction be unsuitable for some datasets?	When data has nonlinear relationships or lies on a curved manifold	chapter05::nonlinear
-Basic	What is manifold learning?	Nonlinear dimensionality reduction techniques that capture structure of data on lower-dimensional manifolds	chapter05::nonlinear
-Basic	What is t-SNE primarily used for?	Visualizing high-dimensional datasets in 2D or 3D by preserving local neighborhood structure	chapter05::tsne
-Basic	What is a key limitation of t-SNE compared to PCA?	t-SNE cannot be applied to new data points; PCA creates a reusable transformation matrix	chapter05::tsne
-Cloze	When using t-SNE, set init='{{c1::pca}}' for better preservation of global structure		chapter05::tsne
-Basic	What hyperparameters should be tuned for t-SNE?	Perplexity (related to number of neighbors) and learning rate	chapter05::tsne
-Basic	What is UMAP?	Uniform Manifold Approximation and Projection - similar to t-SNE but faster and can project new data	chapter05::nonlinear
-Cloze	The first principal component always has the {{c1::largest possible variance}} among all projections		chapter05::pca
-Basic	What is the curse of dimensionality?	Problems arising with high-dimensional data: sparse data, overfitting	chapter05::dimensionality-reduction
-Basic	How do you determine how many principal components to keep?	Examine cumulative explained variance ratio; choose k components capturing sufficient percentage (e.g., 95%)	chapter05::pca
-Basic	What does a scree plot show in PCA?	Variance explained by each principal component in descending order	chapter05::pca
-Basic	Why does LDA produce at most c-1 linear discriminants?	The between-class scatter matrix has at most c-1 nonzero eigenvalues	chapter05::lda
-Cloze	Feature extraction can improve performance by reducing the {{c1::curse of dimensionality}}		chapter05::dimensionality-reduction
-Basic	Who formulated Fisher's Linear Discriminant?	R.A. Fisher in 1936 (original two-class version)	chapter05::lda
-Basic	Who generalized LDA to multiple classes?	C.R. Rao in 1948	chapter05::lda
+Basic	What is an "eigenvalue"?	Scalar showing how much eigenvector is stretched	chapter05::prerequisites
+Basic	What is an "eigenvector"?	Vector unchanged in direction by transformation	chapter05::prerequisites
+Basic	What is a "covariance matrix"?	Matrix of pairwise feature covariances	chapter05::prerequisites
+Basic	What is "variance"?	Spread of data around the mean	chapter05::prerequisites
+Basic	What is a "manifold"?	Lower-dimensional surface in higher-dimensional space	chapter05::prerequisites
+Basic	What is "orthogonal"?	Perpendicular (90 degrees)	chapter05::prerequisites
+Basic	What is "projection"?	Mapping data onto lower dimensions	chapter05::prerequisites
+Basic	Feature selection vs feature extraction?	Selection keeps originals; extraction creates new features	chapter05::dimensionality-reduction
+Basic	What is PCA?	Principal Component Analysis	chapter05::pca
+Basic	What is PCA's goal?	Find directions of maximum variance	chapter05::pca
+Basic	Is PCA supervised or unsupervised?	Unsupervised	chapter05::pca
+Basic	What are principal components?	Orthogonal axes of maximum variance	chapter05::pca
+Cloze	PCA transformation: z = {{c1::xW}}		chapter05::pca
+Basic	Step 1 of PCA?	Standardize the data	chapter05::pca-steps
+Basic	Step 2 of PCA?	Compute covariance matrix	chapter05::pca-steps
+Basic	Step 3 of PCA?	Get eigenvalues and eigenvectors	chapter05::pca-steps
+Basic	Step 4 of PCA?	Sort eigenvalues descending	chapter05::pca-steps
+Basic	Step 5 of PCA?	Select top k eigenvectors	chapter05::pca-steps
+Basic	Step 6 of PCA?	Build projection matrix W	chapter05::pca-steps
+Basic	Step 7 of PCA?	Transform data: z = xW	chapter05::pca-steps
+Basic	Why standardize before PCA?	PCA is sensitive to scale	chapter05::pca
+Basic	What do eigenvalues represent in PCA?	Variance explained by each component	chapter05::eigenvalues
+Basic	Which eigenvector has most variance?	One with largest eigenvalue	chapter05::eigenvalues
+Basic	What does positive covariance mean?	Features increase together	chapter05::covariance-matrix
+Basic	What does negative covariance mean?	Features vary oppositely	chapter05::covariance-matrix
+Cloze	Variance ratio = {{c1::λ_j / Σλ}}		chapter05::variance-explained
+Basic	Why are PCs mutually orthogonal?	Property of eigendecomposition	chapter05::pca
+Basic	What are factor loadings?	Correlations between features and PCs	chapter05::pca
+Basic	How to choose number of PCs?	Cumulative variance ≥ 95%	chapter05::pca
+Basic	What is a scree plot?	Variance per component, descending	chapter05::pca
+Basic	What is LDA?	Linear Discriminant Analysis	chapter05::lda
+Basic	What is LDA's goal?	Maximize class separability	chapter05::lda
+Basic	Is LDA supervised or unsupervised?	Supervised	chapter05::lda
+Basic	Key difference: PCA vs LDA?	PCA maximizes variance; LDA maximizes class separation	chapter05::pca-vs-lda
+Basic	Step 1 of LDA?	Standardize the data	chapter05::lda-steps
+Basic	Step 2 of LDA?	Compute mean vector per class	chapter05::lda-steps
+Basic	Step 3 of LDA?	Compute S_B and S_W matrices	chapter05::lda-steps
+Basic	Step 4 of LDA?	Get eigenvectors of S_W^(-1)S_B	chapter05::lda-steps
+Basic	What is S_W in LDA?	Within-class scatter matrix	chapter05::lda
+Basic	What is S_B in LDA?	Between-class scatter matrix	chapter05::lda
+Cloze	LDA produces at most {{c1::c-1}} discriminants (c = classes)		chapter05::lda
+Basic	Why max c-1 discriminants in LDA?	S_B has at most c-1 nonzero eigenvalues	chapter05::lda
+Basic	LDA assumption 1?	Data is normally distributed	chapter05::lda
+Basic	LDA assumption 2?	Classes have same covariance	chapter05::lda
+Basic	LDA assumption 3?	Examples are independent	chapter05::lda
+Basic	When might PCA beat LDA?	Few training examples per class	chapter05::pca-vs-lda
+Basic	What is t-SNE used for?	Visualizing high-dim data in 2D/3D	chapter05::tsne
+Basic	Key limitation of t-SNE?	Cannot project new data points	chapter05::tsne
+Basic	t-SNE hyperparameters to tune?	Perplexity and learning rate	chapter05::tsne
+Basic	What is UMAP?	Faster t-SNE alternative	chapter05::nonlinear
+Basic	UMAP advantage over t-SNE?	Can project new data	chapter05::nonlinear
+Basic	What is the curse of dimensionality?	High dims cause sparse data, overfitting	chapter05::dimensionality-reduction
+Basic	What is manifold learning?	Nonlinear dimensionality reduction	chapter05::nonlinear
+Basic	Write code to import PCA.	from sklearn.decomposition import PCA	chapter05::code
+Basic	Write code to create PCA with 2 components.	pca = PCA(n_components=2)	chapter05::code
+Basic	Write code to fit and transform with PCA.	X_pca = pca.fit_transform(X_std)	chapter05::code
+Basic	How to get explained variance ratio?	pca.explained_variance_ratio_	chapter05::code
+Basic	Write code to import LDA.	from sklearn.discriminant_analysis import LinearDiscriminantAnalysis	chapter05::code
+Basic	Write code to create LDA with 2 components.	lda = LinearDiscriminantAnalysis(n_components=2)	chapter05::code
+Basic	Write code to fit LDA (needs y).	X_lda = lda.fit_transform(X_std, y)	chapter05::code
+Basic	Write code to compute covariance matrix.	cov_mat = np.cov(X_std.T)	chapter05::code
+Basic	Write code for eigendecomposition.	eigenvalues, eigenvectors = np.linalg.eigh(cov_mat)	chapter05::code
+Basic	Why use np.linalg.eigh over eig?	More stable for symmetric matrices	chapter05::code
+Basic	Write code to import t-SNE.	from sklearn.manifold import TSNE	chapter05::code
+Basic	Write code to run t-SNE.	X_tsne = TSNE(n_components=2, perplexity=30).fit_transform(X)	chapter05::code
+Basic	Write code to get cumulative variance.	np.cumsum(pca.explained_variance_ratio_)	chapter05::code
