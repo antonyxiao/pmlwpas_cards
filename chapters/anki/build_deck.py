@@ -210,18 +210,36 @@ def get_chapter_number(filename: str) -> int:
         return 99
 
 
+# Chapter titles for subdeck names
+CHAPTER_TITLES = {
+    1: "ML Foundations",
+    2: "Basic Algorithms",
+    3: "Scikit-Learn Classifiers",
+    4: "Data Preprocessing",
+    5: "Dimensionality Reduction",
+    6: "Model Evaluation",
+    7: "Ensemble Learning",
+    8: "Sentiment Analysis",
+    9: "Regression",
+    10: "Clustering",
+    11: "Neural Networks from Scratch",
+    12: "PyTorch Basics",
+    13: "PyTorch Advanced",
+    14: "CNNs",
+    15: "RNNs",
+    16: "Transformers",
+    17: "GANs",
+    18: "Graph Neural Networks",
+    19: "Reinforcement Learning",
+}
+
+
 def build_deck(
     output_path: Path = DEFAULT_OUTPUT,
     chapters: list = None,
     include_images: bool = True,
 ) -> None:
-    """Build the Anki deck from CSV files."""
-
-    # Create deck
-    deck = genanki.Deck(
-        DECK_ID,
-        'Python Machine Learning Flashcards'
-    )
+    """Build the Anki deck from CSV files with chapter subdecks."""
 
     # Find CSV files
     csv_files = sorted(
@@ -242,6 +260,8 @@ def build_deck(
 
     print(f"Building deck from {len(csv_files)} CSV files...\n")
 
+    # Create subdecks for each chapter
+    decks = []
     total_cards = 0
     media_files = []
 
@@ -249,6 +269,13 @@ def build_deck(
         filename = Path(csv_file).name
         chapter_num = get_chapter_number(filename)
         cards = parse_csv(Path(csv_file))
+
+        # Create subdeck with chapter name
+        chapter_title = CHAPTER_TITLES.get(chapter_num, f"Chapter {chapter_num}")
+        subdeck_name = f"Python ML Flashcards::Ch{chapter_num:02d} - {chapter_title}"
+        subdeck_id = generate_id(subdeck_name)
+
+        subdeck = genanki.Deck(subdeck_id, subdeck_name)
 
         print(f"  Chapter {chapter_num:02d}: {len(cards)} cards")
 
@@ -267,8 +294,10 @@ def build_deck(
                     tags=card['tags'].replace('::', '_').split() if card['tags'] else [],
                 )
 
-            deck.add_note(note)
+            subdeck.add_note(note)
             total_cards += 1
+
+        decks.append(subdeck)
 
     # Collect images
     if include_images and IMAGES_DIR.exists():
@@ -277,8 +306,8 @@ def build_deck(
         if media_files:
             print(f"\n  Including {len(media_files)} images")
 
-    # Create package
-    package = genanki.Package(deck)
+    # Create package with all subdecks
+    package = genanki.Package(decks)
     if media_files:
         package.media_files = media_files
 
@@ -288,9 +317,11 @@ def build_deck(
     print(f"\n{'=' * 50}")
     print(f"SUCCESS: Created {output_path.name}")
     print(f"  Total cards: {total_cards}")
+    print(f"  Subdecks: {len(decks)}")
     print(f"  Media files: {len(media_files)}")
     print(f"  File size: {output_path.stat().st_size / 1024:.1f} KB")
     print(f"\nImport this file into Anki to use the deck.")
+    print(f"Cards are organized by chapter in the deck browser.")
 
 
 def main():
